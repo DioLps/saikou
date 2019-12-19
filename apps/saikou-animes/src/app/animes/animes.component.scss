@@ -1,0 +1,39 @@
+.galery {
+  &__cards {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  &__card {
+    flex: 0 0 15%;
+    border: 1px solid #c4c4c4;
+    border-radius: 10px;
+    -webkit-box-shadow: -1px 3px 20px -10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 3px 20px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 3px 20px -10px rgba(0, 0, 0, 0.75);
+
+    @media only screen and (max-width: 768px) {
+      flex: 0 0 100%;
+    }
+  }
+
+  //   &__buttons {}
+
+  //   &__button {}
+}
+
+.card {
+  margin-bottom: 16px;
+
+  &__banner {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  &__title {
+    padding: 8px;
+  }
+}

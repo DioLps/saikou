@@ -1,14 +1,14 @@
-<section *ngIf="response">
-  <ul>
-    <li *ngFor="let anime of response.animes">
-      <img [src]="anime.src" [alt]="anime.title" />
-      <p [innerText]="anime.title"></p>
-      <small [innerText]="anime.slug"></small>
-    </li>
-  </ul>
+<section class="galery" *ngIf="response">
 
-  <div *ngIf="response.nextPage">
-    <button (click)="getNextPage(response.nextPage)">
+  <div class="galery__cards">
+    <div class="galery__card card" *ngFor="let anime of response.animes">
+      <img class="card__banner" [src]="anime.src" [alt]="anime.title" />
+      <p class="card__title" [innerText]="anime.title"></p>
+    </div>
+  </div>
+
+  <div class="galery__buttons" *ngIf="response.nextPage">
+    <button class="galery__button" (click)="getNextPage(response.nextPage)">
       Ver mais
     </button>
   </div>
