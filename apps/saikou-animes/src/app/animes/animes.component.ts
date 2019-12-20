@@ -25,7 +25,8 @@ export class AnimesComponent {
 
   public getNextPage(nextPage: number) {
     this.aServ.getAnimesPaged(nextPage).subscribe((anime: AnimesData) => {
-      this.response = anime;
+      this.response.nextPage = anime.nextPage;
+      this.response.animes.push(...anime.animes);
     });
   }
 

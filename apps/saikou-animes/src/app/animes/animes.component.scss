@@ -9,7 +9,7 @@
   }
 
   &__card {
-    flex: 0 0 20%;
+    flex: 0 0 15%;
     // border: 1px solid #c4c4c4;
     // border-radius: 10px;
     // -webkit-box-shadow: -1px 3px 20px -10px rgba(0, 0, 0, 0.75);
@@ -21,16 +21,26 @@
     }
   }
 
-    &__buttons {
-      display: flex;
-      justify-content: center;
-    }
+  &__buttons {
+    display: flex;
+    justify-content: center;
+  }
 
   //   &__button {}
 }
 
 .card {
   margin-bottom: 16px;
+  cursor: pointer;
+  transition: 300ms;
+
+  &:hover {
+box-sizing: content-box;
+    border: 1px solid rgb(185, 185, 185);
+    -webkit-box-shadow:  -1px 3px 20px -10px rgba(185, 185, 185, 0.75) !important;
+    -moz-box-shadow:  -1px 3px 20px -10px rgba(185, 185, 185, 0.75) !important;
+    box-shadow:  -1px 3px 20px -10px rgba(185, 185, 185, 0.75) !important;
+  }
 
   &__banner {
     // width: 100%;
