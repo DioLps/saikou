@@ -1,14 +1,16 @@
 <section class="galery" *ngIf="response">
 
   <div class="galery__cards">
-    <div class="galery__card card" *ngFor="let anime of response.animes">
-      <img class="card__banner" [src]="anime.src" [alt]="anime.title" />
-      <p class="card__title" [innerText]="anime.title"></p>
-    </div>
+    <mat-card class="galery__card card" *ngFor="let anime of response.animes">
+      <img class="card__banner" mat-card-image [src]="anime.src" [alt]="anime.title" />
+      <mat-card-content>
+        <p class="card__title" [innerText]="anime.title"></p>
+      </mat-card-content>
+    </mat-card>
   </div>
 
   <div class="galery__buttons" *ngIf="response.nextPage">
-    <button class="galery__button" (click)="getNextPage(response.nextPage)">
+    <button mat-button class="galery__button" (click)="getNextPage(response.nextPage)">
       Ver mais
     </button>
   </div>

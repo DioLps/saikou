@@ -5,7 +5,12 @@ import { AppComponent } from './app.component';
 import { AnimesComponent } from './animes/animes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AnimesService } from './animes/animes.service';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,6 +19,12 @@ import { AnimesService } from './animes/animes.service';
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
   ],
   providers: [
     AnimesService,

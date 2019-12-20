@@ -25,7 +25,10 @@
               "apps/saikou-animes/src/favicon.ico",
               "apps/saikou-animes/src/assets"
             ],
-            "styles": ["apps/saikou-animes/src/styles.scss"],
+            "styles": [
+              "apps/saikou-animes/src/styles.scss",
+              "apps/saikou-animes/src/_theme.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -84,7 +87,10 @@
               "apps/saikou-animes/tsconfig.app.json",
               "apps/saikou-animes/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/saikou-animes/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/saikou-animes/**"
+            ]
           }
         },
         "test": {
@@ -118,8 +124,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/saikou-animes-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/saikou-animes-e2e/**"]
+            "tsConfig": [
+              "apps/saikou-animes-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/saikou-animes-e2e/**"
+            ]
           }
         }
       }

@@ -1,1 +1,20 @@
-<saikou-animes></saikou-animes>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button type="button" mat-button (click)="drawer.toggle()">
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">menu</mat-icon>
+    </button>
+    <span class="example-spacer"></span>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <saikou-animes></saikou-animes>
+  </div>
+
+</mat-drawer-container>
