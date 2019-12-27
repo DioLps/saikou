@@ -1,19 +1,32 @@
 <mat-toolbar color="grey">
   <mat-toolbar-row class="main-row">
-    <button type="button" mat-mini-fab  (click)="drawer.toggle()">
-      <mat-icon class="example-icon" aria-hidden="false">menu</mat-icon>
-    </button>
-    <span class="example-spacer"></span>
-    <mat-icon  mat-mini-fab  class="example-icon" aria-hidden="false">person</mat-icon>
+    <div class="main-row__menu-logo">
+      <button type="button" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon mat-mini-fab aria-hidden="false">menu</mat-icon>
+      </button>
+    </div>
+    <div class="main-row__field">
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Pesquisar">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="main-row__user-info">
+      <button type="button" mat-icon-button>
+        <mat-icon aria-hidden="false">person</mat-icon>
+      </button>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
+<mat-drawer-container class="list-container" autosize>
+  <mat-drawer #drawer class="list-container__sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p>Auto-resizing sidenav</p>
     <p>Auto-resizing sidenav</p>
   </mat-drawer>
 
-  <div class="example-sidenav-content">
+  <div class="list-container__content">
     <saikou-animes></saikou-animes>
   </div>
 

@@ -10,8 +10,11 @@
   </div>
 
   <div class="galery__buttons" *ngIf="response.nextPage">
-    <button mat-raised-button color="primary" class="galery__button" (click)="getNextPage(response.nextPage)">
+    <button mat-raised-button color="primary" class="galery__button" *ngIf="!isLoading"
+      (click)="getNextPage(response.nextPage)">
       Ver mais
     </button>
+    <mat-progress-spinner class="galery__loader"  color="primary" mode="indeterminate" *ngIf="isLoading">
+    </mat-progress-spinner>
   </div>
 </section>
