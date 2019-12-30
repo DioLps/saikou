@@ -16,8 +16,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
 import { DetailsComponent } from './animes/details/details.component';
 import { AppRoutingModule } from './app-routing.module';
+import { EpisodeComponent } from './animes/episode/episode.component';
 @NgModule({
-  declarations: [AppComponent, AnimesComponent, DetailsComponent],
+  declarations: [AppComponent, AnimesComponent, DetailsComponent, EpisodeComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

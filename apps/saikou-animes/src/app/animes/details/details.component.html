@@ -12,7 +12,11 @@
     </div>
   </div>
   <div class="details__episodes" *ngIf="epiObject">
-    <mat-card class="details__episode episode" *ngFor="let epi of epiObject.episodes">
+    <mat-card class="details__episode episode" *ngFor="let epi of epiObject.episodes"
+    (click)="goToVideo(epi)"
+
+
+    >
       <img class="episode__banner" mat-card-image [src]="epi.image" [alt]="epi.title" />
       <mat-card-content class="episode__content">
         <span class="episode__title" [innerText]="epi.title"></span>

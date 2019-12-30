@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DetailsService } from './details.service';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'saikou-details',
@@ -14,7 +13,8 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private detailServ: DetailsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private route: Router
   ) {}
 
   ngOnInit() {
@@ -39,5 +39,9 @@ export class DetailsComponent implements OnInit {
           this.epiObject = response;
         });
     }
+  }
+
+  public goToVideo(epi) {
+    this.route.navigateByUrl(`/animes/episode/${epi.slug}`);
   }
 }

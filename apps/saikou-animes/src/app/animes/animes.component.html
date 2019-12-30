@@ -1,20 +1,25 @@
-<section class="galery" *ngIf="response">
-
-  <div class="galery__cards">
-    <mat-card class="galery__card card" *ngFor="let anime of response.animes" (click)="goToDetail(anime.slug)">
-      <img class="card__banner" mat-card-image [src]="anime.src" [alt]="anime.title" />
+<section class="galery">
+  <div class="galery__buttons" *ngIf="pager">
+    <button mat-stroked-button [color]="selectedPage == page ? 'warn': ''" class="galery__button"
+      *ngFor="let page of pager.pages" (click)="getNextPage(page)">
+      {{page}}
+    </button>
+  </div>
+  <div class="galery__cards" *ngIf="filteredList">
+    <mat-card class="galery__card card" *ngFor="let anime of filteredList" (click)="goToDetail(anime.slug)">
+      <img class="card__banner" mat-card-image [src]="anime.cover" [alt]="anime.title" />
       <mat-card-content>
         <p class="card__title" [innerText]="anime.title"></p>
       </mat-card-content>
     </mat-card>
   </div>
 
-  <div class="galery__buttons" *ngIf="response.nextPage">
-    <button mat-raised-button color="primary" class="galery__button" *ngIf="!isLoading"
-      (click)="getNextPage(response.nextPage)">
-      Ver mais
+  <div class="galery__buttons" *ngIf="pager">
+    <button mat-stroked-button [color]="selectedPage == page ? 'warn': ''" class="galery__button"
+      *ngFor="let page of pager.pages" (click)="getNextPage(page)">
+      {{page}}
     </button>
-    <mat-progress-spinner class="galery__loader" color="primary" mode="indeterminate" *ngIf="isLoading">
-    </mat-progress-spinner>
   </div>
+  <mat-progress-spinner class="galery__loader" color="primary" mode="indeterminate" *ngIf="isLoading">
+  </mat-progress-spinner>
 </section>
