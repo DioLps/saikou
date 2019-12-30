@@ -14,12 +14,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
+import { DetailsComponent } from './animes/details/details.component';
+import { AppRoutingModule } from './app-routing.module';
 @NgModule({
-  declarations: [AppComponent, AnimesComponent],
+  declarations: [AppComponent, AnimesComponent, DetailsComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     MatCardModule,
     MatButtonModule,
     MatSidenavModule,
@@ -28,7 +31,6 @@ import { MatInputModule } from '@angular/material';
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatInputModule,
-
   ],
   providers: [AnimesService],
   bootstrap: [AppComponent]

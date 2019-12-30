@@ -4,16 +4,15 @@
       <button type="button" mat-icon-button (click)="drawer.toggle()">
         <mat-icon mat-mini-fab aria-hidden="false">menu</mat-icon>
       </button>
-    </div>
-    <div class="main-row__field">
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Pesquisar">
-        <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
+      <a class="main-row__link" [routerLink]="['animes']">
+        Saikou Animes</a>
     </div>
     <div class="main-row__user-info">
       <button type="button" mat-icon-button>
         <mat-icon aria-hidden="false">person</mat-icon>
+      </button>
+      <button type="button" mat-icon-button>
+        <mat-icon mat-mini-fab aria-hidden="false">search</mat-icon>
       </button>
     </div>
   </mat-toolbar-row>
@@ -21,13 +20,13 @@
 
 <mat-drawer-container class="list-container" autosize>
   <mat-drawer #drawer class="list-container__sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p>Auto-resizing sidenav</p>
-    <p>Auto-resizing sidenav</p>
+    <p>Animes</p>
+    <p>Categorias</p>
+    <p>Suporte</p>
   </mat-drawer>
 
   <div class="list-container__content">
-    <saikou-animes></saikou-animes>
+    <router-outlet></router-outlet>
   </div>
 
 </mat-drawer-container>

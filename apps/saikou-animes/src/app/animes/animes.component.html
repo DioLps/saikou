@@ -1,7 +1,7 @@
 <section class="galery" *ngIf="response">
 
   <div class="galery__cards">
-    <mat-card class="galery__card card" *ngFor="let anime of response.animes">
+    <mat-card class="galery__card card" *ngFor="let anime of response.animes" (click)="goToDetail(anime.slug)">
       <img class="card__banner" mat-card-image [src]="anime.src" [alt]="anime.title" />
       <mat-card-content>
         <p class="card__title" [innerText]="anime.title"></p>
@@ -14,7 +14,7 @@
       (click)="getNextPage(response.nextPage)">
       Ver mais
     </button>
-    <mat-progress-spinner class="galery__loader"  color="primary" mode="indeterminate" *ngIf="isLoading">
+    <mat-progress-spinner class="galery__loader" color="primary" mode="indeterminate" *ngIf="isLoading">
     </mat-progress-spinner>
   </div>
 </section>

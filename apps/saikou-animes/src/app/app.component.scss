@@ -7,6 +7,10 @@
   }
   &__sidenav {
     padding: 20px;
+
+    @media only screen and (max-width: 768px) {
+      padding: 0;
+    }
   }
 }
 
@@ -16,8 +20,16 @@
   align-items: center;
   justify-content: space-between;
 
+  @media only screen and (max-width: 768px) {
+    padding: 0;
+  }
+
   &__menu-logo {
     flex: 0 0 30%;
+  }
+  &__link {
+    color: white;
+    text-decoration: none;
   }
   &__field {
     flex: 1;
