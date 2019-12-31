@@ -24,9 +24,10 @@ import { AnimesComponent } from './animes/animes.component';
 import { DetailsComponent } from './animes/details/details.component';
 import { EpisodeComponent } from './animes/episode/episode.component';
 
-import { AnimesService } from './animes/animes.service';
-import { AnimesState } from './animes/animes.state';
+import { AnimesService } from './animes/store/animes.service';
+import { AnimesState } from './animes/store/animes.state';
 import { environment } from '../environments/environment';
+import { DetailsState } from './animes/details/store/details.state';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-    NgxsModule.forRoot([AnimesState], {
+    NgxsModule.forRoot([AnimesState, DetailsState], {
       developmentMode: !environment.production
     }),
     NgxsRouterPluginModule.forRoot(),

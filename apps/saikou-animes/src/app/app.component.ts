@@ -7,7 +7,7 @@ import {
   distinctUntilChanged,
   tap
 } from 'rxjs/operators';
-import { GetDetailAnime } from './animes/animes.actions';
+import { GetDetailAnime } from './animes/store/animes.actions';
 
 @Component({
   selector: 'saikou-root',

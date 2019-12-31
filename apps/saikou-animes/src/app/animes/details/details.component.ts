@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { Navigate } from '@ngxs/router-plugin';
 
-import { AnimeData } from '../animes.model';
+import { AnimeData } from '../store/animes.model';
 
 @Component({
   selector: 'saikou-details',
@@ -38,7 +38,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
           this.details = response.animes.find((anime: AnimeData) => {
             return anime.hash === parseInt(slug);
           });
-          console.warn(this.details);
           if (this.details === undefined) {
             this.goBack();
           }

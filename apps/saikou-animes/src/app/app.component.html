@@ -35,7 +35,7 @@
     <router-outlet></router-outlet>
   </div>
   <div class="list-container__search list-container--margin" *ngIf="!isSearchHide">
-    <p *ngIf="searchResults && searchTerm">
+    <p *ngIf="searchResults && searchTerm && isLoading">
       Buscando: '{{ searchTerm }}'...
     </p>
     <div class="list-container__cards" *ngIf="searchResults">

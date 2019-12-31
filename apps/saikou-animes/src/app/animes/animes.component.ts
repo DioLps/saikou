@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { AnimesService } from './animes.service';
+import { AnimesService } from './store/animes.service';
 import { Router } from '@angular/router';
-import { AnimesData, AnimeData } from './animes.model';
+import { AnimesData, AnimeData } from './store/animes.model';
 import { Store } from '@ngxs/store';
-import { GetAnimes, GetDetailAnime } from './animes.actions';
-import { Observable } from 'rxjs';
+import { GetAnimes, GetDetailAnime } from './store/animes.actions';
 @Component({
   selector: 'saikou-animes',
   templateUrl: './animes.component.html',
