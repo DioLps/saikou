@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Subscription, Subject } from 'rxjs';
 import {
@@ -11,13 +11,14 @@ import { GetDetailAnime } from './animes/store/animes.actions';
 import { AnimeData } from './animes/store/animes.model';
 import { GetEpisodesDetails } from './animes/details/store/details.actions';
 import { Navigate } from '@ngxs/router-plugin';
+import { MatDrawer } from '@angular/material';
 
 @Component({
   selector: 'saikou-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   public animes = [];
   public searchResults = [];
   public isSearchHide = true;
@@ -60,6 +61,14 @@ export class AppComponent {
       this.searchSubs.unsubscribe();
     }
   }
+
+  ngOnDestroy() {
+    this.searchTerm = '';
+    this.searchResults = [];
+    this.isLoading = false;
+    this.searchSubs.unsubscribe();
+  }
+
   public goToDetail(anime: AnimeData) {
     this.changeSearch();
     this.store.dispatch([
@@ -76,5 +85,10 @@ export class AppComponent {
       return loweCaseTitle.includes(lowerCaseTerm);
     });
     this.isLoading = false;
+  }
+
+  public menuAction(action: string, drawer: MatDrawer) {
+    drawer.toggle();
+    this.store.dispatch(new Navigate([action]));
   }
 }

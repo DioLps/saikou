@@ -29,13 +29,17 @@ import { AnimesService } from './animes/store/animes.service';
 import { AnimesState } from './animes/store/animes.state';
 import { environment } from '../environments/environment';
 import { DetailsState } from './animes/details/store/details.state';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { SupportComponent } from './support/support.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AnimesComponent,
     DetailsComponent,
-    EpisodeComponent
+    EpisodeComponent,
+    FavoritesComponent,
+    SupportComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,7 @@ import { DetailsState } from './animes/details/store/details.state';
       developmentMode: !environment.production
     }),
     NgxsRouterPluginModule.forRoot(),
-    // NgxsLoggerPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
     MatCardModule,
     MatButtonModule,
     MatSidenavModule,

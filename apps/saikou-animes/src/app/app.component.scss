@@ -1,4 +1,5 @@
 .list-container {
+  height: 89.5vh;
   &__search {
     display: flex;
     align-items: center;
@@ -25,10 +26,11 @@
     height: 100%;
   }
   &__sidenav {
+    // min-height: 400px;
     padding: 16px 64px;
 
     @media only screen and (max-width: 768px) {
-      padding: 0 25px;
+      padding: 0 16px;
     }
   }
   &__cards {
@@ -43,6 +45,16 @@
 
     @media only screen and (max-width: 768px) {
       flex: 0 0 100%;
+    }
+  }
+  &__list {
+  }
+  &__item {
+    cursor: pointer;
+    &:hover {
+      border: 1px solid #716f6f73;
+      border-radius: 4px;
+      box-sizing: border-box;
     }
   }
 }

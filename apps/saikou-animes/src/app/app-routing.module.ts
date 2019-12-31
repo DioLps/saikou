@@ -3,13 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { AnimesComponent } from './animes/animes.component';
 import { DetailsComponent } from './animes/details/details.component';
 import { EpisodeComponent } from './animes/episode/episode.component';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { SupportComponent } from './support/support.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'animes', pathMatch: 'full' },
   { path: 'animes', component: AnimesComponent },
   { path: 'animes/details/:slug', component: DetailsComponent },
   { path: 'animes/episode/:slug', component: EpisodeComponent },
-  { path: '**', redirectTo: 'animes', },
+  { path: 'favorites', component: FavoritesComponent },
+  { path: 'support', component: SupportComponent },
+  { path: '**', redirectTo: 'animes' }
 ];
 
 @NgModule({
