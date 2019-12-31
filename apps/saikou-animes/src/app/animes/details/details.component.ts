@@ -24,6 +24,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.getDetailsAnime();
     this.getDetailsEpisodes();
   }

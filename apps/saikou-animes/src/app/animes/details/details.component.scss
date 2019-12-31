@@ -81,7 +81,19 @@
     align-items: center;
     justify-content: space-between;
   }
-  &__has_hd {
-    color: gold;
+  &__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__icon {
+    position: absolute;
+    background-color: #673ab799;
+    height: 72px !important;
+    width: 72px !important;
+    font-size: 72px !important;
+    border: 1px solid #673ab7;
+    border-radius: 4px;
   }
 }

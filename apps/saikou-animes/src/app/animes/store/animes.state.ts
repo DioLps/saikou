@@ -40,7 +40,6 @@ export class AnimesState {
             ...anime,
             ...animes
           };
-          console.log(anime);
         }
         return anime;
       });

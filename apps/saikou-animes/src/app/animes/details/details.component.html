@@ -33,7 +33,10 @@
   </div>
   <div class="details__episodes" *ngIf="epiObject">
     <mat-card class="details__episode episode" *ngFor="let epi of epiObject.episodes" (click)="goToVideo(epi)">
-      <img class="episode__banner" mat-card-image [src]="epi.image" [alt]="epi.title" />
+      <div class="episode__header">
+        <img class="episode__banner" mat-card-image [src]="epi.image" [alt]="epi.title" />
+        <mat-icon class="episode__icon" mat-mini-fab>play_arrow</mat-icon>
+      </div>
       <mat-card-content class="episode__content">
         <span class="episode__title" [innerText]="epi.title"></span>
         <span class="episode__has_hd" *ngIf="epi.has_hd">HD</span>
