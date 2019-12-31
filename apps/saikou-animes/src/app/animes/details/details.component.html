@@ -1,21 +1,39 @@
 <div class="details">
-  <!-- <pre>
-    {{ details | json }}
-  </pre> -->
+  <button mat-button class="details__button" (click)="goBack()" title="Voltar">
+    <mat-icon mat-mini-fab>keyboard_arrow_left</mat-icon>
+    Voltar
+  </button>
+
   <div class="details__content" *ngIf="details">
     <h3 class="details__title" [innerText]="details.title"></h3>
-
-    <img class="details__banner" [src]="details.image" [alt]="details.title">
+    <div class="details__header">
+      <img class="details__banner" [src]="details.cover" [alt]="details.title">
+      <div class="details__about">
+        <div class="details__many-epi">
+          Vídeos: {{details.videos}}
+        </div>
+        <div class="details__type">
+          Tipo: {{details.type}}
+        </div>
+        <div class="details__genre">
+          Gênero: {{details.genre}}
+        </div>
+        <div class="details__status">
+          Status: {{details.status}}
+        </div>
+        <div class="details__views">
+          Número de visulizações: {{details.views}}
+        </div>
+      </div>
+    </div>
     <div class="details__extra-info">
-      <small><strong>Sinopse: </strong></small>
-      <p [innerText]="details.description"> </p>
+      <strong>Sinopse: </strong>
+      <p [innerText]="details.synopsis"> </p>
     </div>
   </div>
-  <div class="details__episodes" *ngIf="epiObject">
+  <!-- <div class="details__episodes" *ngIf="epiObject">
     <mat-card class="details__episode episode" *ngFor="let epi of epiObject.episodes"
     (click)="goToVideo(epi)"
-
-
     >
       <img class="episode__banner" mat-card-image [src]="epi.image" [alt]="epi.title" />
       <mat-card-content class="episode__content">
@@ -23,7 +41,7 @@
         <span class="episode__has_hd" *ngIf="epi.has_hd">HD</span>
       </mat-card-content>
     </mat-card>
-  </div>
-  <mat-progress-spinner class="details__loader" color="primary" mode="indeterminate" *ngIf="!details || !epiObject">
+  </div> -->
+  <mat-progress-spinner class="details__loader" color="primary" mode="indeterminate" *ngIf="!details ">
   </mat-progress-spinner>
 </div>

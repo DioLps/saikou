@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { AnimesData } from './animes.component';
+import { AnimesData, PagerData } from './animes.model';
 
 @Injectable({ providedIn: 'root' })
 export class AnimesService {
@@ -22,11 +22,15 @@ export class AnimesService {
     );
   }
 
+  public getDetailsAnime(hash: string) {
+    return this.httpClient.get(`${this.endpoint}/detail/${hash}`);
+  }
+
   public getPager(
     totalItems: number,
     currentPage: number = 1,
     pageSize: number = 20
-  ) {
+  ): PagerData {
     // calculate total pages
     const totalPages = Math.ceil(totalItems / pageSize);
 

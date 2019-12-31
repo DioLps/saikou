@@ -1,18 +1,24 @@
 <mat-toolbar color="grey">
   <mat-toolbar-row class="main-row">
-    <div class="main-row__menu-logo">
+    <div class="main-row__menu-logo" *ngIf="isSearchHide">
       <button type="button" mat-icon-button (click)="drawer.toggle()">
-        <mat-icon mat-mini-fab aria-hidden="false">menu</mat-icon>
+        <mat-icon mat-mini-fab>menu</mat-icon>
       </button>
       <a class="main-row__link" [routerLink]="['animes']">
         Saikou Animes</a>
     </div>
-    <div class="main-row__user-info">
-      <button type="button" mat-icon-button>
-        <mat-icon aria-hidden="false">person</mat-icon>
+    <div class="main-row__search-action" *ngIf="isSearchHide">
+      <button type="button" mat-icon-button (click)="changeSearch();">
+        <mat-icon mat-mini-fab>search</mat-icon>
       </button>
-      <button type="button" mat-icon-button>
-        <mat-icon mat-mini-fab aria-hidden="false">search</mat-icon>
+    </div>
+    <div class="main-row__search-box search-box" *ngIf="!isSearchHide">
+      <div class="search-box__container">
+        <input class="search-box__field" placeholder="Digite o nome de um anime" [(ngModel)]="searchTerm"
+          (keyup)="search($event)">
+      </div>
+      <button type="button" class="search-box__close" mat-icon-button (click)="changeSearch();">
+        <mat-icon mat-mini-fab>close</mat-icon>
       </button>
     </div>
   </mat-toolbar-row>
@@ -25,8 +31,23 @@
     <p>Suporte</p>
   </mat-drawer>
 
-  <div class="list-container__content">
+  <div class="list-container__content" *ngIf="isSearchHide">
     <router-outlet></router-outlet>
+  </div>
+  <div class="list-container__search list-container--margin" *ngIf="!isSearchHide">
+    <p *ngIf="searchResults && searchTerm">
+      Buscando: '{{ searchTerm }}'...
+    </p>
+    <div class="list-container__cards" *ngIf="searchResults">
+      <mat-card class="list-container__card card" *ngFor="let anime of searchResults" (click)="goToDetail(anime.hash)">
+        <img class="card__banner" mat-card-image [src]="anime.cover" [alt]="anime.title" />
+        <mat-card-content class="card__content">
+          <h3 class="card__title" [innerText]="anime.title + ' - ' + anime.type"></h3>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <mat-progress-spinner class="list-container__loader" color="primary" mode="indeterminate" *ngIf="isLoading">
+    </mat-progress-spinner>
   </div>
 
 </mat-drawer-container>

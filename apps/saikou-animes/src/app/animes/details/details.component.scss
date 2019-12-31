@@ -1,7 +1,7 @@
 .details {
   display: flex;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
   flex-wrap: wrap;
   min-height: 90vh;
   padding: 0 64px;
@@ -10,9 +10,15 @@
   @media only screen and (max-width: 768px) {
     padding: 0 16px;
   }
+
+  &__button{
+    margin-top: 16px;
+  }
+
   &__content {
     flex: 0 0 100%;
   }
+
   &__episodes {
     flex: 0 0 100%;
     display: flex;
@@ -20,13 +26,31 @@
     flex-wrap: wrap;
   }
   &__title {
+    text-align: center;
   }
   &__banner {
+    height: 250px;
+
+    @media only screen and (max-width: 768px) {
+      height: unset;
+      flex: 1 1 auto;
+    }
   }
   &__extra-info {
     margin-top: 8px;
   }
-  &__loader {
+  &__header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    line-height: 3;
+  }
+  &__about {
+    margin-left: 16px;
+
+    @media only screen and (max-width: 425px) {
+      margin-left: 0;
+    }
   }
 }
 .episode {

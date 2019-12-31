@@ -22,11 +22,6 @@
 
   &__card {
     flex: 0 0 19%;
-    // border: 1px solid #c4c4c4;
-    // border-radius: 10px;
-    // -webkit-box-shadow: -1px 3px 20px -10px rgba(0, 0, 0, 0.75);
-    // -moz-box-shadow: -1px 3px 20px -10px rgba(0, 0, 0, 0.75);
-    // box-shadow: -1px 3px 20px -10px rgba(0, 0, 0, 0.75);
 
     @media only screen and (max-width: 768px) {
       flex: 0 0 100%;
@@ -39,6 +34,12 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+  }
+
+  &__button {
+    @media only screen and (max-width: 768px) {
+      margin-bottom: 8px;
+    }
   }
 }
 
@@ -60,11 +61,15 @@
     width: 100%;
     height: 250px;
     margin: 0 !important;
-    // border-top-left-radius: 10px;
-    // border-top-right-radius: 10px;
+    @media only screen and (max-width: 768px) {
+      height: 265px;
+    }
   }
 
-  &__title {
-    padding: 8px;
+  &__content {
+    padding: 16px;
   }
+  // &__title {
+  //   padding: 8px;
+  // }
 }

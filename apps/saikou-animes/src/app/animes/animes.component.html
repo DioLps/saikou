@@ -6,10 +6,10 @@
     </button>
   </div>
   <div class="galery__cards" *ngIf="filteredList">
-    <mat-card class="galery__card card" *ngFor="let anime of filteredList" (click)="goToDetail(anime.slug)">
+    <mat-card class="galery__card card" *ngFor="let anime of filteredList" (click)="goToDetail(anime.hash)">
       <img class="card__banner" mat-card-image [src]="anime.cover" [alt]="anime.title" />
-      <mat-card-content>
-        <p class="card__title" [innerText]="anime.title"></p>
+      <mat-card-content class="card__content">
+        <h3 class="card__title" [innerText]="anime.title + ' - ' + anime.type"></h3>
       </mat-card-content>
     </mat-card>
   </div>

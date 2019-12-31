@@ -1,47 +1,56 @@
-import { Component, OnInit } from '@angular/core';
-import { DetailsService } from './details.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Navigate } from '@ngxs/router-plugin';
+
+import { AnimeData } from '../animes.model';
 
 @Component({
   selector: 'saikou-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, OnDestroy {
   public details = null;
-  public epiObject = null;
+  public myStoreSub: Subscription;
 
   constructor(
-    private detailServ: DetailsService,
     private activatedRoute: ActivatedRoute,
-    private route: Router
+    private route: Router,
+    private store: Store
   ) {}
 
   ngOnInit() {
-    this.detailServ
-      .getAnimeDetails(this.activatedRoute.snapshot.params.slug)
-      .subscribe((response: any) => {
-        this.details = response.data;
-        this.getAnimeEpisodes();
-      });
+    this.getDetailsAnime();
   }
-  public getAnimeEpisodes(page?: string) {
-    if (page !== undefined) {
-      this.detailServ
-        .getAnimeEpisodes(this.activatedRoute.snapshot.params.slug, page)
-        .subscribe((response: any) => {
-          this.epiObject = response;
-        });
-    } else {
-      this.detailServ
-        .getAnimeEpisodes(this.activatedRoute.snapshot.params.slug)
-        .subscribe((response: any) => {
-          this.epiObject = response;
-        });
-    }
+
+  ngOnDestroy() {
+    this.myStoreSub.unsubscribe();
+  }
+
+  public getDetailsAnime() {
+    const slug = this.activatedRoute.snapshot.params.slug;
+    this.myStoreSub = this.store
+      .select(state => state.animes)
+      .subscribe(response => {
+        if (response) {
+          this.details = response.animes.find((anime: AnimeData) => {
+            return anime.hash === parseInt(slug);
+          });
+          console.warn(this.details);
+          if (this.details === undefined) {
+            this.goBack();
+          }
+        }
+      });
   }
 
   public goToVideo(epi) {
     this.route.navigateByUrl(`/animes/episode/${epi.slug}`);
+  }
+
+  public goBack() {
+    this.store.dispatch(new Navigate([`/animes`]));
   }
 }

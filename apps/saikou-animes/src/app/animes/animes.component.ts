@@ -1,27 +1,17 @@
 import { Component } from '@angular/core';
 import { AnimesService } from './animes.service';
 import { Router } from '@angular/router';
-
-export interface AnimesData {
-  animes: Array<AnimeData>;
-}
-
-export interface AnimeData {
-  hash: number;
-  title: string;
-  genre: string;
-  videos: number;
-  cover: string;
-  type: string;
-  slug: string;
-}
+import { AnimesData, AnimeData } from './animes.model';
+import { Store } from '@ngxs/store';
+import { GetAnimes, GetDetailAnime } from './animes.actions';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'saikou-animes',
   templateUrl: './animes.component.html',
   styleUrls: ['./animes.component.scss']
 })
 export class AnimesComponent {
-  public response: AnimesData = null;
+  public response: AnimesData;
   public filteredList: Array<AnimeData> = [];
   public isLoading = false;
   public selectedPage = 1;
@@ -37,13 +27,22 @@ export class AnimesComponent {
     pages: number[];
   };
 
-  constructor(private aServ: AnimesService, private router: Router) {
+  constructor(
+    private aServ: AnimesService,
+    private router: Router,
+    private store: Store
+  ) {
     this.isLoading = true;
-    this.aServ.getAnimes().subscribe((anime: AnimesData) => {
-      this.response = anime;
-      this.setPage(this.selectedPage);
-      this.isLoading = false;
-    });
+    this.store
+      .select(state => state.animes)
+      .subscribe(anime => {
+        if (anime) {
+          this.response = anime;
+          this.setPage(this.selectedPage);
+          this.isLoading = false;
+        }
+      });
+    this.store.dispatch(new GetAnimes());
   }
 
   public getNextPage(nextPage: number) {
@@ -53,8 +52,8 @@ export class AnimesComponent {
     this.isLoading = false;
   }
 
-  public goToDetail(slug: string) {
-    this.router.navigateByUrl(`/animes/details/${slug}`);
+  public goToDetail(hash: string) {
+    this.store.dispatch(new GetDetailAnime(hash));
   }
 
   public setPage(page: number) {
@@ -66,10 +65,5 @@ export class AnimesComponent {
       this.pager.startIndex,
       this.pager.endIndex + 1
     );
-  }
-  public setColor(position) {
-    console.log(position, this.selectedPage);
-
-    // selectedPage == (position + 1) ? 'warn': ''
   }
 }
