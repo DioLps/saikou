@@ -10,7 +10,14 @@
     padding: 0 16px;
   }
 
-  &__button{
+  &__buttons {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  &__button {
     margin-top: 16px;
   }
 
@@ -54,7 +61,7 @@
   }
 }
 .episode {
-  flex: 0 0 20%;
+  flex: 0 0 15%;
   margin-bottom: 16px;
   cursor: pointer;
   transition: 300ms;

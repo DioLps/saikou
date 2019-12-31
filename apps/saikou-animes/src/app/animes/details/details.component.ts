@@ -5,6 +5,7 @@ import { Store } from '@ngxs/store';
 import { Navigate } from '@ngxs/router-plugin';
 
 import { AnimeData } from '../store/animes.model';
+import { GetEpisodesDetails } from './store/details.actions';
 
 @Component({
   selector: 'saikou-details',
@@ -37,9 +38,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
       .select(state => state.animes)
       .subscribe(response => {
         if (response) {
-          this.details = response.animes.find((anime: AnimeData) => {
-            return anime.hash === parseInt(slug);
-          });
+          this.details = null;
+          this.details = response.animes.find(
+            (anime: AnimeData) => anime.hash === parseInt(slug)
+          );
           if (this.details === undefined) {
             this.goBack();
           }
@@ -51,6 +53,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     const mySub = this.store
       .select(state => state.details)
       .subscribe(response => {
+        this.epiObject = null;
         this.epiObject = response.details;
         if (this.epiObject === undefined) {
           this.goBack();
@@ -65,5 +68,14 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   public goBack() {
     this.store.dispatch(new Navigate([`/animes`]));
+  }
+
+  public goToPage(page: any) {
+    this.store
+      .dispatch(new GetEpisodesDetails({ slug: this.details.slug, page }))
+      .toPromise()
+      .then(() => {
+        window.scrollTo(0, 420);
+      });
   }
 }

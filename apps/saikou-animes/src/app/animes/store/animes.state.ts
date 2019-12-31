@@ -2,8 +2,6 @@ import { AnimesData, AnimeData } from './animes.model';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { GetAnimes, GetDetailAnime } from './animes.actions';
 import { AnimesService } from './animes.service';
-import { Navigate } from '@ngxs/router-plugin';
-import { GetEpisodesDetails } from '../details/store/details.actions';
 
 export class AnimesStateModel implements AnimesData {
   animes: AnimeData[];
@@ -31,7 +29,7 @@ export class AnimesState {
 
   @Action(GetDetailAnime)
   getDetailsAnimeAction(
-    { getState, patchState, dispatch }: StateContext<AnimesStateModel>,
+    { getState, patchState }: StateContext<AnimesStateModel>,
     { payload }: GetDetailAnime
   ) {
     const state = getState();
@@ -42,17 +40,13 @@ export class AnimesState {
             ...anime,
             ...animes
           };
+          console.log(anime);
         }
         return anime;
       });
       patchState({
         animes: newState
       });
-
-      dispatch([
-        new Navigate([`/animes/details/${payload.hash}`]),
-        new GetEpisodesDetails({ slug: payload.slug, page: 1 })
-      ]);
     });
   }
 }

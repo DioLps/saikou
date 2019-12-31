@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AnimesData, AnimeData } from './store/animes.model';
 import { Store } from '@ngxs/store';
 import { GetAnimes, GetDetailAnime } from './store/animes.actions';
+import { Navigate } from '@ngxs/router-plugin';
+import { GetEpisodesDetails } from './details/store/details.actions';
 @Component({
   selector: 'saikou-animes',
   templateUrl: './animes.component.html',
@@ -49,11 +51,15 @@ export class AnimesComponent {
     this.selectedPage = nextPage;
     this.setPage(this.selectedPage);
     this.isLoading = false;
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
 
   public goToDetail(anime: AnimeData) {
-    this.store.dispatch(new GetDetailAnime(anime));
+    this.store.dispatch([
+      new GetDetailAnime(anime),
+      new Navigate([`/animes/details/${anime.hash}`]),
+      new GetEpisodesDetails({ slug: anime.slug, page: 1 })
+    ]);
   }
 
   public setPage(page: number) {

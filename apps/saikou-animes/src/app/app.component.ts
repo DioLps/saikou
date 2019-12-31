@@ -9,6 +9,8 @@ import {
 } from 'rxjs/operators';
 import { GetDetailAnime } from './animes/store/animes.actions';
 import { AnimeData } from './animes/store/animes.model';
+import { GetEpisodesDetails } from './animes/details/store/details.actions';
+import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
   selector: 'saikou-root',
@@ -60,7 +62,11 @@ export class AppComponent {
   }
   public goToDetail(anime: AnimeData) {
     this.changeSearch();
-    this.store.dispatch(new GetDetailAnime(anime));
+    this.store.dispatch([
+      new GetDetailAnime(anime),
+      new Navigate([`/animes/details/${anime.hash}`]),
+      new GetEpisodesDetails({ slug: anime.slug, page: 1 })
+    ]);
   }
 
   public filterByTerm() {
