@@ -1,7 +1,6 @@
 .details {
   display: flex;
   align-items: center;
-  // justify-content: center;
   flex-wrap: wrap;
   min-height: 90vh;
   padding: 0 64px;
@@ -17,6 +16,7 @@
 
   &__content {
     flex: 0 0 100%;
+    margin-bottom: 16px;
   }
 
   &__episodes {

@@ -39,7 +39,7 @@
       Buscando: '{{ searchTerm }}'...
     </p>
     <div class="list-container__cards" *ngIf="searchResults">
-      <mat-card class="list-container__card card" *ngFor="let anime of searchResults" (click)="goToDetail(anime.hash)">
+      <mat-card class="list-container__card card" *ngFor="let anime of searchResults" (click)="goToDetail(anime)">
         <img class="card__banner" mat-card-image [src]="anime.cover" [alt]="anime.title" />
         <mat-card-content class="card__content">
           <h3 class="card__title" [innerText]="anime.title + ' - ' + anime.type"></h3>

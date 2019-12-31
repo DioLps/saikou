@@ -22,7 +22,7 @@ export class AnimesService {
     );
   }
 
-  public getDetailsAnime(hash: string) {
+  public getDetailsAnime(hash: number) {
     return this.httpClient.get(`${this.endpoint}/detail/${hash}`);
   }
 

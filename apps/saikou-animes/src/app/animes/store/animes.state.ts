@@ -3,6 +3,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { GetAnimes, GetDetailAnime } from './animes.actions';
 import { AnimesService } from './animes.service';
 import { Navigate } from '@ngxs/router-plugin';
+import { GetEpisodesDetails } from '../details/store/details.actions';
 
 export class AnimesStateModel implements AnimesData {
   animes: AnimeData[];
@@ -34,9 +35,9 @@ export class AnimesState {
     { payload }: GetDetailAnime
   ) {
     const state = getState();
-    this.aServ.getDetailsAnime(payload).subscribe((animes: AnimesData) => {
+    this.aServ.getDetailsAnime(payload.hash).subscribe((animes: AnimesData) => {
       const newState = state.animes.map((anime: AnimeData) => {
-        if (anime.hash === payload) {
+        if (anime.hash === payload.hash) {
           anime = {
             ...anime,
             ...animes
@@ -48,7 +49,10 @@ export class AnimesState {
         animes: newState
       });
 
-      dispatch(new Navigate([`/animes/details/${payload}`]));
+      dispatch([
+        new Navigate([`/animes/details/${payload.hash}`]),
+        new GetEpisodesDetails({ slug: payload.slug, page: 1 })
+      ]);
     });
   }
 }

@@ -8,6 +8,7 @@ import {
   tap
 } from 'rxjs/operators';
 import { GetDetailAnime } from './animes/store/animes.actions';
+import { AnimeData } from './animes/store/animes.model';
 
 @Component({
   selector: 'saikou-root',
@@ -57,9 +58,9 @@ export class AppComponent {
       this.searchSubs.unsubscribe();
     }
   }
-  public goToDetail(hash: string) {
+  public goToDetail(anime: AnimeData) {
     this.changeSearch();
-    this.store.dispatch(new GetDetailAnime(hash));
+    this.store.dispatch(new GetDetailAnime(anime));
   }
 
   public filterByTerm() {

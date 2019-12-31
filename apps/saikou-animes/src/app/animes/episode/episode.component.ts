@@ -19,7 +19,6 @@ export class EpisodeComponent implements OnInit {
     this.epiServ
       .getAnimeEpisode(this.activatedRoute.snapshot.params.slug)
       .subscribe((response: any) => {
-        console.log(response.urls);
         this.episode = response.urls;
       });
   }

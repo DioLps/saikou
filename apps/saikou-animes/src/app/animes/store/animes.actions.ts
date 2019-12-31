@@ -1,3 +1,5 @@
+import { AnimeData } from './animes.model';
+
 export class GetAnimes {
   static readonly type = '[Animes] Get';
   constructor(public payload?: any) {}
@@ -5,5 +7,5 @@ export class GetAnimes {
 
 export class GetDetailAnime {
   static readonly type = '[GetDetailAnime] Get details';
-  constructor(public payload?: any) {}
+  constructor(public payload: AnimeData) {}
 }

@@ -49,10 +49,11 @@ export class AnimesComponent {
     this.selectedPage = nextPage;
     this.setPage(this.selectedPage);
     this.isLoading = false;
+    window.scrollTo(0,0);
   }
 
-  public goToDetail(hash: string) {
-    this.store.dispatch(new GetDetailAnime(hash));
+  public goToDetail(anime: AnimeData) {
+    this.store.dispatch(new GetDetailAnime(anime));
   }
 
   public setPage(page: number) {

@@ -13,7 +13,8 @@ import { AnimeData } from '../store/animes.model';
 })
 export class DetailsComponent implements OnInit, OnDestroy {
   public details = null;
-  public myStoreSub: Subscription;
+  public epiObject = null;
+  public myStoreSub: Array<Subscription> = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,15 +24,16 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getDetailsAnime();
+    this.getDetailsEpisodes();
   }
 
   ngOnDestroy() {
-    this.myStoreSub.unsubscribe();
+    this.myStoreSub.forEach(sub => sub.unsubscribe());
   }
 
   public getDetailsAnime() {
     const slug = this.activatedRoute.snapshot.params.slug;
-    this.myStoreSub = this.store
+    const mySub = this.store
       .select(state => state.animes)
       .subscribe(response => {
         if (response) {
@@ -43,6 +45,18 @@ export class DetailsComponent implements OnInit, OnDestroy {
           }
         }
       });
+    this.myStoreSub.push(mySub);
+  }
+  public getDetailsEpisodes() {
+    const mySub = this.store
+      .select(state => state.details)
+      .subscribe(response => {
+        this.epiObject = response.details;
+        if (this.epiObject === undefined) {
+          this.goBack();
+        }
+      });
+    this.myStoreSub.push(mySub);
   }
 
   public goToVideo(epi) {

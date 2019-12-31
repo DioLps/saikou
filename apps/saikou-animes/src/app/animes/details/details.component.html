@@ -26,12 +26,12 @@
         </div>
       </div>
     </div>
-    <div class="details__extra-info">
+    <div class="details__extra-info" *ngIf="details.synopsis">
       <strong>Sinopse: </strong>
       <p [innerText]="details.synopsis"> </p>
     </div>
   </div>
-  <!-- <div class="details__episodes" *ngIf="epiObject">
+  <div class="details__episodes" *ngIf="epiObject">
     <mat-card class="details__episode episode" *ngFor="let epi of epiObject.episodes"
     (click)="goToVideo(epi)"
     >
@@ -41,7 +41,7 @@
         <span class="episode__has_hd" *ngIf="epi.has_hd">HD</span>
       </mat-card-content>
     </mat-card>
-  </div> -->
+  </div>
   <mat-progress-spinner class="details__loader" color="primary" mode="indeterminate" *ngIf="!details ">
   </mat-progress-spinner>
 </div>

@@ -46,7 +46,7 @@ import { DetailsState } from './animes/details/store/details.state';
       developmentMode: !environment.production
     }),
     NgxsRouterPluginModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot(),
+    // NgxsLoggerPluginModule.forRoot(),
     MatCardModule,
     MatButtonModule,
     MatSidenavModule,

@@ -29,8 +29,7 @@ export class DetailsState {
     this.detailsService
       .getAnimeEpisodes(payload)
       .subscribe((details: EpisodeDetailsData) => {
-        console.log('details', details);
-        // patchState(details);
+        patchState({ details });
       });
   }
 }

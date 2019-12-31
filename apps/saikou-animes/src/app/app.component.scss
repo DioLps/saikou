@@ -66,9 +66,6 @@
     margin: 0 !important;
   }
 
-  // &__title {
-  //   padding: 8px;
-  // }
   &__content {
     padding: 16px;
   }
@@ -86,6 +83,8 @@
 
   &__menu-logo {
     flex: 0 0 30%;
+    display: flex;
+    align-items: center;
   }
   &__link {
     color: white;
@@ -137,8 +136,6 @@
     flex: 1 1 auto;
     background-color: #303030;
     color: white;
-    // #673ab7
-    // #303030
     &:focus {
       outline: none;
     }
