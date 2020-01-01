@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { AnimesData, PagerData } from './animes.model';
 
 @Injectable({ providedIn: 'root' })
-export class AnimesService {
+export class AnimeService {
   private endpoint = 'http://localhost:3000/anime';
   constructor(private httpClient: HttpClient) {}
 

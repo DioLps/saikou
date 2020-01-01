@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AnimesService } from './store/animes.service';
+import { AnimeService } from './store/animes.service';
 import { Router } from '@angular/router';
 import { AnimesData, AnimeData } from './store/animes.model';
 import { Store } from '@ngxs/store';
@@ -29,7 +29,7 @@ export class AnimesComponent {
   };
 
   constructor(
-    private aServ: AnimesService,
+    private aServ: AnimeService,
     private router: Router,
     private store: Store
   ) {

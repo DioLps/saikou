@@ -25,7 +25,7 @@ import { AnimesComponent } from './animes/animes.component';
 import { DetailsComponent } from './animes/details/details.component';
 import { EpisodeComponent } from './animes/episode/episode.component';
 
-import { AnimesService } from './animes/store/animes.service';
+import { AnimeService } from './animes/store/animes.service';
 import { AnimesState } from './animes/store/animes.state';
 import { environment } from '../environments/environment';
 import { DetailsState } from './animes/details/store/details.state';
@@ -62,7 +62,7 @@ import { SupportComponent } from './support/support.component';
     MatInputModule,
     MatListModule
   ],
-  providers: [AnimesService],
+  providers: [AnimeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
