@@ -8,10 +8,10 @@
     "nx.json": "*"
   },
   "projects": {
-    "saikou-animes-e2e": {
+    "saikou-animes": {
       "tags": []
     },
-    "saikou-animes": {
+    "crawler": {
       "tags": []
     }
   }

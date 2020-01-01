@@ -103,34 +103,61 @@
         }
       }
     },
-    "saikou-animes-e2e": {
-      "root": "apps/saikou-animes-e2e",
-      "sourceRoot": "apps/saikou-animes-e2e/src",
+    "crawler": {
+      "root": "apps/crawler",
+      "sourceRoot": "apps/crawler/src",
       "projectType": "application",
+      "prefix": "crawler",
+      "schematics": {},
       "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+        "build": {
+          "builder": "@nrwl/node:build",
           "options": {
-            "cypressConfig": "apps/saikou-animes-e2e/cypress.json",
-            "tsConfig": "apps/saikou-animes-e2e/tsconfig.e2e.json",
-            "devServerTarget": "saikou-animes:serve"
+            "outputPath": "dist/apps/crawler",
+            "main": "apps/crawler/src/main.ts",
+            "tsConfig": "apps/crawler/tsconfig.app.json",
+            "assets": [
+              "apps/crawler/src/assets"
+            ]
           },
           "configurations": {
             "production": {
-              "devServerTarget": "saikou-animes:serve:production"
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/crawler/src/environments/environment.ts",
+                  "with": "apps/crawler/src/environments/environment.prod.ts"
+                }
+              ]
             }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "crawler:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/saikou-animes-e2e/tsconfig.e2e.json"
+              "apps/crawler/tsconfig.app.json",
+              "apps/crawler/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!apps/saikou-animes-e2e/**"
+              "!apps/crawler/**"
             ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/crawler/jest.config.js",
+            "tsConfig": "apps/crawler/tsconfig.spec.json"
           }
         }
       }

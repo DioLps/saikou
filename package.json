@@ -5,7 +5,9 @@
   "scripts": {
     "ng": "ng",
     "nx": "nx",
-    "start": "ng serve",
+    "start": "npm-run-all --parallel front back",
+    "front": "ng s -o saikou-animes",
+    "back": "ng s crawler",
     "build": "ng build",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
@@ -45,7 +47,11 @@
     "@nrwl/angular": "8.9.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.4.0",
-    "zone.js": "^0.9.1"
+    "zone.js": "^0.9.1",
+    "@nestjs/common": "^6.8.3",
+    "@nestjs/core": "^6.8.3",
+    "@nestjs/platform-express": "^6.8.3",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@angular/cli": "8.3.14",
@@ -67,6 +73,10 @@
     "@types/jest": "24.0.9",
     "ts-jest": "24.0.0",
     "cypress": "3.6.1",
-    "@nrwl/cypress": "8.9.0"
+    "@nrwl/cypress": "8.9.0",
+    "@nrwl/node": "8.9.0",
+    "@nestjs/schematics": "^6.7.0",
+    "@nestjs/testing": "^6.8.3",
+    "@nrwl/nest": "8.9.0"
   }
 }
