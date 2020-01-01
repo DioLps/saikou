@@ -8,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./episode.component.scss']
 })
 export class EpisodeComponent implements OnInit {
-  private episode = null;
+  public episode = null;
   constructor(
     private epiServ: EpisodeService,
     private activatedRoute: ActivatedRoute,
