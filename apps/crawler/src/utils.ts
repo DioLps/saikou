@@ -17,5 +17,8 @@ export enum Colors {
   BGWHITE = '\x1b[47m'
 }
 export enum MessagesError {
-  ANIMES_NOT_FOUND = 'Não foi possível carregar os animes.'
+  ANIMES_NOT_FOUND = 'Não foi possível carregar os animes.',
+  DETAILS_NOT_FOUND = 'Não foi possível carregar os detalhes.',
+  EPISODES_NOT_FOUND = 'Não foi possível carregar os episódios.',
+  VIDEO_NOT_FOUND = 'Não foi possível carregar os vídeos.',
 }
