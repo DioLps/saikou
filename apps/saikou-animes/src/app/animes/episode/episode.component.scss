@@ -1,0 +1,29 @@
+.episode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  &__video {
+    width: 720px;
+    margin: 32px 64px;
+
+    @media only screen and (max-width: 768px) {
+      margin: 16px;
+      flex: 0 0 100%;
+    }
+  }
+  &__label {
+    flex: 0 0 100%;
+    margin: 0;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  &__buttons {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  // &__button {
+  // }
+}

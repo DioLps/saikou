@@ -5,7 +5,7 @@ import { AnimesData, PagerData } from './animes.model';
 
 @Injectable({ providedIn: 'root' })
 export class AnimeService {
-  private endpoint = 'http://localhost:3000/anime';
+  private endpoint = 'http://localhost:3000/api/anime';
   constructor(private httpClient: HttpClient) {}
 
   public getAnimes() {

@@ -6,7 +6,7 @@ import { DetailsPayload } from './details.model';
   providedIn: 'root'
 })
 export class DetailsService {
-  private endpoint = 'http://localhost:3000/anime';
+  private endpoint = 'http://localhost:3000/api/anime';
   constructor(private httpClient: HttpClient) {}
 
   public getAnimeEpisodes(params: DetailsPayload) {

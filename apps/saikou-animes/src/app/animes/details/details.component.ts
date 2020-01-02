@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { Navigate } from '@ngxs/router-plugin';
@@ -17,11 +17,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public epiObject = null;
   public myStoreSub: Array<Subscription> = [];
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private route: Router,
-    private store: Store
-  ) {}
+  constructor(private activatedRoute: ActivatedRoute, private store: Store) {}
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -50,6 +46,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
       });
     this.myStoreSub.push(mySub);
   }
+
   public getDetailsEpisodes() {
     const mySub = this.store
       .select(state => state.details)
@@ -64,7 +61,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   public goToVideo(epi) {
-    this.route.navigateByUrl(`/animes/episode/${epi.slug}`);
+    this.store.dispatch(new Navigate([`/animes/episode/${epi.slug}`]));
   }
 
   public goBack() {

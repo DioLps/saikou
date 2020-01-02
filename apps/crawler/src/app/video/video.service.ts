@@ -47,10 +47,12 @@ export class VideoService {
   }
 
   private getMainVideo(element) {
+    // TODO
+    // Validar possiblidade de fallback
     try {
       const lastElement = element.toArray().pop().lastChild.data;
       const fromKey = "emphasis += \"<source type='video/mp4' src='";
-      const untilKey = '\' />"; emphasis += ';
+      const untilKey = `' />";\nemphasis += `;
       const from = lastElement.indexOf(fromKey) + fromKey.length;
       const until = lastElement.indexOf(untilKey);
       return lastElement.substring(from, until);
