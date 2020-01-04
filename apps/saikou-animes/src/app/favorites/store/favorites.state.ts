@@ -51,6 +51,5 @@ export class FavoritesState {
       fav => fav.hash === payload.hash
     );
     patchState({ isFavorite });
-    console.log(isFavorite);
   }
 }
