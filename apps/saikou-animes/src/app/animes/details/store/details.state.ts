@@ -2,7 +2,7 @@ import { State, Selector, Action, StateContext } from '@ngxs/store';
 
 import { EpisodeDetailsData } from './details.model';
 import { DetailsService } from './details.service';
-import { GetEpisodesDetails, GetHash } from './details.actions';
+import { GetEpisodesDetails } from './details.actions';
 
 export class DetailsStateModel {
   details: EpisodeDetailsData;
