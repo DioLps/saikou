@@ -15,6 +15,15 @@
     width: 100%;
     align-items: center;
     justify-content: space-evenly;
+    &--between {
+      justify-content: space-between;
+    }
+  }
+  &__icon {
+    color: white;
+    &--selected {
+      color: #f33d3d;
+    }
   }
 
   &__button {

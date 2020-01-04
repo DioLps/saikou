@@ -1,8 +1,15 @@
 <div class="details">
-  <button mat-button class="details__button" (click)="goBack()" title="Voltar">
-    <mat-icon mat-mini-fab>keyboard_arrow_left</mat-icon>
-    Voltar
-  </button>
+  <div class="details__buttons details__buttons--between">
+    <button mat-button class="details__button" (click)="goBack()" title="Voltar">
+      <mat-icon mat-mini-fab>keyboard_arrow_left</mat-icon>
+      Voltar
+    </button>
+    <button mat-button class="details__button" (click)="setFavorite()" title="Favoritar">
+      <mat-icon mat-mini-fab class="details__icon" [class.details__icon--selected]="isFavorite">
+        {{isFavorite?'favorite' : 'favorite_border' }}
+      </mat-icon>
+    </button>
+  </div>
 
   <div class="details__content" *ngIf="details">
     <h3 class="details__title" [innerText]="details.title"></h3>

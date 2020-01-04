@@ -6,6 +6,10 @@ import { Navigate } from '@ngxs/router-plugin';
 
 import { AnimeData } from '../store/animes.model';
 import { GetEpisodesDetails } from './store/details.actions';
+import {
+  SetFavoriteAnime,
+  IsThisAFavoriteAnime
+} from '../../favorites/store/favorites.actions';
 
 @Component({
   selector: 'saikou-details',
@@ -16,6 +20,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public details = null;
   public epiObject = null;
   public myStoreSub: Array<Subscription> = [];
+  private slug: string;
+  public isFavorite = false;
 
   constructor(private activatedRoute: ActivatedRoute, private store: Store) {}
 
@@ -30,21 +36,32 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   public getDetailsAnime() {
-    const slug = this.activatedRoute.snapshot.params.slug;
-    const mySub = this.store
+    this.slug = this.activatedRoute.snapshot.params.slug;
+    this.verifyFavorite();
+    const mySubDetail = this.store
       .select(state => state.animes)
       .subscribe(response => {
         if (response) {
           this.details = null;
           this.details = response.animes.find(
-            (anime: AnimeData) => anime.hash === parseInt(slug)
+            (anime: AnimeData) => anime.hash === parseInt(this.slug)
           );
           if (this.details === undefined) {
             this.goBack();
           }
         }
       });
-    this.myStoreSub.push(mySub);
+    this.myStoreSub.push(mySubDetail);
+  }
+
+  private verifyFavorite() {
+    this.store.dispatch(new IsThisAFavoriteAnime({ hash: this.slug }));
+    const mySubDetail = this.store
+      .select(state => state.favorites.isFavorite)
+      .subscribe(isFavorite => {
+        this.isFavorite = isFavorite;
+      });
+    this.myStoreSub.push(mySubDetail);
   }
 
   public getDetailsEpisodes() {
@@ -75,5 +92,14 @@ export class DetailsComponent implements OnInit, OnDestroy {
       .then(() => {
         window.scrollTo(0, 420);
       });
+  }
+
+  public setFavorite() {
+    this.store.dispatch(
+      new SetFavoriteAnime({
+        hash: this.slug
+      })
+    );
+    this.verifyFavorite();
   }
 }

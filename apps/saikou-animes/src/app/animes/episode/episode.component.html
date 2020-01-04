@@ -1,4 +1,10 @@
 <div class="episode" *ngIf="episode">
+  <div class="episode__buttons">
+    <button mat-button class="episode__button episode__button--margin-top" (click)="goBack()" title="Voltar">
+      <mat-icon mat-mini-fab>keyboard_arrow_left</mat-icon>
+      Voltar para listagem de animes
+    </button>
+  </div>
   <video class="episode__video" controls [src]="episode.main"></video>
   <h4 class="episode__label" [innerText]="episode.mainLabel"></h4>
   <div class="episode__buttons">

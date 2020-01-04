@@ -1,4 +1,13 @@
 <div class="favorites">
-  <p>favorites works!</p>
+  <div class="favorites__cards" *ngIf="favorites && !isLoading">
+    <mat-card class="favorites__card card" *ngFor="let anime of favorites" (click)="goToDetail(anime)">
+      <img class="card__banner" mat-card-image [src]="anime.cover" [alt]="anime.title" />
+      <mat-card-content class="card__content">
+        <h3 class="card__title" [innerText]="anime.title + ' - ' + anime.type"></h3>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <mat-progress-spinner class="favorites__loader" color="primary" mode="indeterminate" *ngIf="isLoading">
+  </mat-progress-spinner>
 
 </div>

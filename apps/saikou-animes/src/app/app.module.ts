@@ -32,6 +32,7 @@ import { DetailsState } from './animes/details/store/details.state';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { SupportComponent } from './support/support.component';
 import { EpisodeState } from './animes/episode/store/episode.state';
+import { FavoritesState } from './favorites/store/favorites.state';
 
 @NgModule({
   declarations: [
@@ -48,9 +49,12 @@ import { EpisodeState } from './animes/episode/store/episode.state';
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-    NgxsModule.forRoot([AnimesState, DetailsState, EpisodeState], {
-      developmentMode: !environment.production
-    }),
+    NgxsModule.forRoot(
+      [AnimesState, DetailsState, EpisodeState, FavoritesState],
+      {
+        developmentMode: !environment.production
+      }
+    ),
     NgxsRouterPluginModule.forRoot(),
     // NgxsLoggerPluginModule.forRoot(),
     MatCardModule,

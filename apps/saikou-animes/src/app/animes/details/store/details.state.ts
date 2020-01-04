@@ -2,22 +2,26 @@ import { State, Selector, Action, StateContext } from '@ngxs/store';
 
 import { EpisodeDetailsData } from './details.model';
 import { DetailsService } from './details.service';
-import { GetEpisodesDetails } from './details.actions';
+import { GetEpisodesDetails, GetHash } from './details.actions';
 
 export class DetailsStateModel {
   details: EpisodeDetailsData;
+  hash?: string;
 }
 
 @State<DetailsStateModel>({
   name: 'details',
   defaults: {
-    details: null
+    details: null,
+    hash: ''
   }
 })
 export class DetailsState {
-  constructor(private detailsService: DetailsService) {}
+  constructor(
+    private detailsService: DetailsService
+  ) {}
   @Selector()
-  public static animes(state: DetailsStateModel) {
+  public static details(state: DetailsStateModel) {
     return state.details;
   }
 

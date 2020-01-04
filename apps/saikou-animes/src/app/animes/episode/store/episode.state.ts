@@ -17,7 +17,7 @@ export class EpisodeStateModel implements EpisodeModel {
 export class EpisodeState {
   constructor(private episodeService: EpisodeService) {}
   @Selector()
-  public static animes(state: EpisodeStateModel) {
+  public static episode(state: EpisodeStateModel) {
     return state.episode;
   }
 

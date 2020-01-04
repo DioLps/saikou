@@ -46,11 +46,18 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     let key = page.url.replace('https://goyabu.com/video/', '');
     key = key.replace('/', '');
 
-    this.store.dispatch([new Navigate([`/animes`])]).toPromise().then(() => {
-      this.store.dispatch([
-        new Navigate([`/animes/episode/${key}`]),
-        new GetEpisode(this.activatedRoute.snapshot.params.slug)
-      ]);
-    });
+    this.store
+      .dispatch([new Navigate([`/animes`])])
+      .toPromise()
+      .then(() => {
+        this.store.dispatch([
+          new Navigate([`/animes/episode/${key}`]),
+          new GetEpisode(this.activatedRoute.snapshot.params.slug)
+        ]);
+      });
+  }
+
+  public goBack() {
+    this.store.dispatch(new Navigate([`/animes`]));
   }
 }
