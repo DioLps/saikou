@@ -53,9 +53,17 @@ export class VideoService {
       const lastElement = element.toArray().pop().lastChild.data;
       const fromKey = "emphasis += \"<source type='video/mp4' src='";
       const untilKey = `' />";\nemphasis += `;
+      const untilKeyWithoutBreakline = `' />"; emphasis += `;
       const from = lastElement.indexOf(fromKey) + fromKey.length;
       const until = lastElement.indexOf(untilKey);
-      return lastElement.substring(from, until);
+      let firstCall: string = lastElement.substring(from, until);
+      if (firstCall.includes(untilKeyWithoutBreakline)) {
+        firstCall = firstCall.substring(
+          0,
+          firstCall.indexOf(untilKeyWithoutBreakline)
+        );
+      }
+      return firstCall;
     } catch (error) {
       console.error(error);
       return null;
