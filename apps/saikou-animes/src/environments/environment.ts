@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  tokSmtp: '15c29620-711a-4921-83ee-8dd9df6d65f7',
+  hostSmtp: 'diolopesrln@gmail.com',
+  supportMail:'rodrigolopesrln@gmail.com'
 };
 
 /*

@@ -1,36 +1,53 @@
 <div class="support">
-  <form class="support__form" [formGroup]="supportApplyForm">
+  <form class="support__form" *ngIf="!submitedSucess" [formGroup]="supportApplyForm" (ngSubmit)="submitRepport()">
 
-    <mat-form-field class="support__field support__field---half-size-field">
-      <input matInput placeholder="Nome" formControlName="firstName">
+    <mat-form-field class="support__field support__field--half-size-field">
+      <input matInput placeholder="Seu Nome" formControlName="firstName">
       <mat-error *ngIf="supportApplyForm.controls.firstName.invalid">
         {{getErrorMessage(supportApplyForm.controls.firstName)}}</mat-error>
     </mat-form-field>
 
-    <mat-form-field class="support__field support__field---half-size-field">
-      <input matInput placeholder="Sobrenome" formControlName="lastName">
+    <mat-form-field class="support__field support__field--half-size-field">
+      <input matInput placeholder="Seu sobrenome" formControlName="lastName">
       <mat-error *ngIf="supportApplyForm.controls.lastName.invalid">
         {{getErrorMessage(supportApplyForm.controls.lastName)}}</mat-error>
     </mat-form-field>
 
-    <mat-form-field class="support__field support__field---half-size-field">
-      <input matInput placeholder="Email" formControlName="email">
+    <mat-form-field class="support__field support__field--half-size-field">
+      <input matInput placeholder="Seu e-mail" formControlName="email">
       <mat-error *ngIf="supportApplyForm.controls.email.invalid">
         {{getErrorMessage(supportApplyForm.controls.email)}}</mat-error>
     </mat-form-field>
 
-    <mat-form-field class="support__field support__field---half-size-field">
+    <mat-form-field class="support__field support__field--half-size-field">
       <input matInput placeholder="Url onde ocorreu o problema" formControlName="urlWhereTheErrorHappens">
       <mat-error *ngIf="supportApplyForm.controls.urlWhereTheErrorHappens.invalid">
         {{getErrorMessage(supportApplyForm.controls.urlWhereTheErrorHappens)}}</mat-error>
     </mat-form-field>
 
     <mat-form-field class="support__field">
-      <textarea matInput placeholder="Mensagem" formControlName="message"></textarea>
+      <textarea matInput placeholder="Sua Mensagem" formControlName="message"></textarea>
       <mat-error *ngIf="supportApplyForm.controls.message.invalid">
         {{getErrorMessage(supportApplyForm.controls.message)}}</mat-error>
     </mat-form-field>
 
 
+    <div class="support__field">
+      <button mat-raised-button color="primary" class="support__button support__button--float-right" type="submit">
+        Enviar
+      </button>
+    </div>
+
   </form>
+
+  <div class="support__send-email" *ngIf="supportApplyForm.valid && submitedSucess">
+    <div class="support__field">
+      <button mat-button class="support__button support__button--margin-top" (click)="goBack()" title="Voltar">
+        <mat-icon mat-mini-fab>keyboard_arrow_left</mat-icon>
+        Voltar
+      </button>
+    </div>
+    <h2 class="support__message" [innerText]="message"> </h2>
+  </div>
+
 </div>

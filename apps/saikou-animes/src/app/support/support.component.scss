@@ -12,8 +12,30 @@
   }
   &__field {
     flex: 0 0 100%;
-    &---half-size-field {
+    &--half-size-field {
       flex: 0 0 48%;
     }
+  }
+
+  &__button {
+    flex: 0 0 100%;
+    &--float-right {
+      float: right;
+    }
+    &--margin-top {
+      margin-top: 2em;
+    }
+  }
+
+  &__send-email {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__message {
+    flex: 0 0 100%;
+    text-align: center;
   }
 }
