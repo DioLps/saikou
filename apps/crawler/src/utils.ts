@@ -20,5 +20,11 @@ export enum MessagesError {
   ANIMES_NOT_FOUND = 'Não foi possível carregar os animes.',
   DETAILS_NOT_FOUND = 'Não foi possível carregar os detalhes.',
   EPISODES_NOT_FOUND = 'Não foi possível carregar os episódios.',
-  VIDEO_NOT_FOUND = 'Não foi possível carregar os vídeos.',
+  VIDEO_NOT_FOUND = 'Não foi possível carregar os vídeos.'
+}
+
+export enum RoutesMap {
+  PREFIX = 'api',
+  SAIKOU = 'api/saikou',
+  PROD_FRONT_PATH = '../dist/apps/saikou-animes/'
 }

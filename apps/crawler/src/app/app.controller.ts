@@ -6,6 +6,10 @@ import { join } from 'path';
 export class AppController {
   @Get()
   root(@Res() res: Response) {
-    return res.sendFile(join(__dirname, '/assets/index.html'));
+    return res.sendFile(join(__dirname, '..', 'saikou-animes/index.html'));
+  }
+  @Get('animes')
+  redirect(@Res() res: Response) {
+    return res.sendFile(join(__dirname, '..', 'saikou-animes/index.html'));
   }
 }
