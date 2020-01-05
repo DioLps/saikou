@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Saikou Api</title>
+  <link href="https://fonts.googleapis.com/css?family=Spectral+SC:200&display=swap" rel="stylesheet">
+  <style>
+    html,
+    body {
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Spectral SC', 'Helvetica Neue', sans-serif;
+      background-color: #212121;
+      color: #929292;
+    }
+
+    .main-section {
+      margin: 32px 64px;
+    }
+
+    .main-section__title {}
+
+    .main-section__disclamer {}
+
+    .main-section__endpoints {
+      list-style: none;
+      padding: 0;
+      margin: 32px 0;
+    }
+
+    .main-section__endpoint {}
+
+    .main-section__highlight {
+      color: red;
+    }
+
+    .main-section__link {
+      color: white;
+      text-decoration: underline;
+    }
+
+
+    @media only screen and (max-width: 768px) {
+      .main-section {
+        margin: 16px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <section class="main-section">
+    <h1 class="main-section__title">
+      Saikou api - Endpoints List &#x1F60F;
+    </h1>
+    <div class="main-section__disclamer">
+      Este Api é um crawler que foi feito com base em <span class="main-section__highlight">um dos melhores sites hoje
+        para ver animes</span>,
+      <a href="https://www.goyabu.com" target="_blank" class="main-section__link">
+        goyabu.com.
+      </a>
+      A ideia por trás do desenvolvimento da mesma, foi estudar o funcionamento dos mecânismos de busca e indexação de
+      conteúdo.
+      <span class="main-section__highlight"> Projeto sem fins lucrativos.</span>
+    </div>
+    <ul class="main-section__endpoints">
+      <li class="main-section__endpoint">
+        <a href="/api" target="_blank" class="main-section__link">
+          Index - Você está aqui :)
+        </a>
+      </li>
+      <li class="main-section__endpoint">
+        <a href="/api/anime" target="_blank" class="main-section__link">
+          Animes
+        </a>
+      </li>
+      <li class="main-section__endpoint">
+        <a href="/api/anime/detail/30" target="_blank" class="main-section__link">
+          Detalhes - Necessário hash pego no endpoint de animes, estou usando o 30 como exemplo
+        </a>
+      </li>
+      <li class="main-section__endpoint">
+        <a href="/api/anime/episodes/black-clover/1" target="_blank" class="main-section__link">
+          Episódios - Necessário slug pego no endpoint de animes e o número da página, estou usando o black-clover e a
+          página 1 como exemplo
+        </a>
+      </li>
+      <li class="main-section__endpoint">
+        <a href="/api/video/72149" target="_blank" class="main-section__link">
+          Vídeos - Necessário slug pego no endpoint de episódios, estou usando o 72149 como exemplo
+        </a>
+      </li>
+    </ul>
+  </section>
+</body>
+
+</html>

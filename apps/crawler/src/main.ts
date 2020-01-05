@@ -25,6 +25,7 @@ async function bootstrap() {
     );
     next();
   });
+
   await app.listen(port, () => {
     console.log(
       Colors.FGBLUE,
