@@ -13,14 +13,11 @@ declare var Email;
 })
 export class SupportComponent implements OnInit {
   public supportApplyForm = new FormGroup({
-    firstName: new FormControl('teste', [Validators.required]),
-    lastName: new FormControl('teste', [Validators.required]),
-    email: new FormControl('gatinho@gmail.com', [
-      Validators.required,
-      Validators.email
-    ]),
-    urlWhereTheErrorHappens: new FormControl('teste', [Validators.required]),
-    message: new FormControl('teste', [Validators.required])
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    urlWhereTheErrorHappens: new FormControl('', [Validators.required]),
+    message: new FormControl('', [Validators.required])
   });
   public submitedSucess = false;
 
