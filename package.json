@@ -2,7 +2,7 @@
   "name": "saikou",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "../dist/apps/crawler/main.js",
+  "main": "main.js",
   "engines": {
     "node": "10",
     "npm": "6"
@@ -18,7 +18,6 @@
     "build:all": "npm-run-all --parallel build:front build:back",
     "build:front": "ng build saikou-animes --prod",
     "build:back": "ng build crawler --prod",
-    "postinstall": "npm run build:all",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
