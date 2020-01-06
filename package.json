@@ -2,7 +2,7 @@
   "name": "saikou",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "main.js",
+  "main": "dist/apps/crawler/main.js",
   "engines": {
     "node": "10",
     "npm": "6"
@@ -10,7 +10,7 @@
   "scripts": {
     "ng": "ng",
     "nx": "nx",
-    "start": "node main.js",
+    "start": "node dist/apps/crawler/main.js",
     "start:local": "npm-run-all --parallel front back",
     "front": "ng s -o saikou-animes",
     "back": "ng s crawler",
