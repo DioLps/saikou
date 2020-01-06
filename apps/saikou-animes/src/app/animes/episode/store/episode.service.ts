@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'apps/saikou-animes/src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EpisodeService {
-  private endpoint = 'http://localhost:3000/api/video';
+  private endpoint = environment.api_path + 'video';
   constructor(private httpClient: HttpClient) {}
 
   public getAnimeEpisode(slug: number) {

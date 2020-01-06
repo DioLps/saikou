@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { AnimesData, PagerData } from './animes.model';
+import { environment } from 'apps/saikou-animes/src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AnimeService {
-  private endpoint = 'http://localhost:3000/api/anime';
+  private endpoint = environment.api_path + 'anime';
   constructor(private httpClient: HttpClient) {}
 
   public getAnimes() {
