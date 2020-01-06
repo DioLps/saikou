@@ -22,21 +22,23 @@ async function bootstrap() {
   const port = argv.port || 5000;
   app.use(setCors);
   console.log('====================== ARGUMENTOS ======================');
-  console.log(
-    argv
-  );
+  console.log(argv);
 
   // Serve only the static files form the angularapp directory
   app.use(express.static(join(__dirname, '..', 'saikou-animes')));
   app.useGlobalFilters(new NotFoundExceptionFilter());
 
-  await app.listen(port + '', () => {
+  await app.listen(process.env.PORT, '0.0.0.0', () => {
     console.log(Colors.FGBLUE, 'Listening at http://localhost:' + port);
   });
 }
 
 bootstrap().catch(reason => {
-  console.log(Colors.FGBLUE, Colors.BGWHITE, ' ====== Erro com o contexto do nest ======= ');
+  console.log(
+    Colors.FGBLUE,
+    Colors.BGWHITE,
+    ' ====== Erro com o contexto do nest ======= '
+  );
   console.log(Colors.FGWHITE, Colors.BGRED, reason);
 });
 
