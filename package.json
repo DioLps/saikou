@@ -68,7 +68,6 @@
     "request-promise": "^4.2.5",
     "rxjs": "~6.4.0",
     "typescript": "~3.5.3",
-    "yargs": "^15.1.0",
     "zone.js": "^0.9.1"
   },
   "devDependencies": {
