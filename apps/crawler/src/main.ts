@@ -21,6 +21,10 @@ async function bootstrap() {
   const argv = yargs.argv;
   const port = argv.port || 5000;
   app.use(setCors);
+  console.log('====================== ARGUMENTOS ======================');
+  console.log(
+    argv
+  );
 
   // Serve only the static files form the angularapp directory
   app.use(express.static(join(__dirname, '..', 'saikou-animes')));
@@ -31,7 +35,10 @@ async function bootstrap() {
   });
 }
 
-bootstrap();
+bootstrap().catch(reason => {
+  console.log(Colors.FGBLUE, Colors.BGWHITE, ' ====== Erro com o contexto do nest ======= ');
+  console.log(Colors.FGWHITE, Colors.BGRED, reason);
+});
 
 const setCors = (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
