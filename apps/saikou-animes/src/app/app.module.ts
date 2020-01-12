@@ -30,7 +30,6 @@ import { AnimesState } from './animes/store/animes.state';
 import { environment } from '../environments/environment';
 import { DetailsState } from './animes/details/store/details.state';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { SupportComponent } from './support/support.component';
 import { EpisodeState } from './animes/episode/store/episode.state';
 import { FavoritesState } from './favorites/store/favorites.state';
 
@@ -40,8 +39,7 @@ import { FavoritesState } from './favorites/store/favorites.state';
     AnimesComponent,
     DetailsComponent,
     EpisodeComponent,
-    FavoritesComponent,
-    SupportComponent
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
