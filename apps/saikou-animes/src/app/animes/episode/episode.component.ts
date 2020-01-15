@@ -5,6 +5,7 @@ import { GetEpisode } from './store/episode.actions';
 import { Subscription } from 'rxjs';
 import { AnimeData } from '../store/animes.model';
 import { Navigate } from '@ngxs/router-plugin';
+import { SetTitle } from '../../store/app.actions';
 
 @Component({
   selector: 'saikou-episode',
@@ -35,6 +36,9 @@ export class EpisodeComponent implements OnInit, OnDestroy {
       .subscribe(response => {
         if (response && response.episode) {
           this.episode = response.episode;
+          this.store.dispatch(
+            new SetTitle('Saikou Animes ' + this.episode.mainLabel)
+          );
         } else {
           this.episode = null;
         }

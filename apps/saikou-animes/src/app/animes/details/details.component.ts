@@ -10,6 +10,7 @@ import {
   SetFavoriteAnime,
   IsThisAFavoriteAnime
 } from '../../favorites/store/favorites.actions';
+import { SetTitle } from '../../store/app.actions';
 
 @Component({
   selector: 'saikou-details',
@@ -48,6 +49,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
           );
           if (this.details === undefined) {
             this.goBack();
+          } else {
+            this.store.dispatch(
+              new SetTitle('Saikou Animes ' + this.details.title)
+            );
           }
         }
       });

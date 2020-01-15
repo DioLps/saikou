@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { GetAnimes, GetDetailAnime } from './store/animes.actions';
 import { Navigate } from '@ngxs/router-plugin';
 import { GetEpisodesDetails } from './details/store/details.actions';
+import { SetTitle } from '../store/app.actions';
 @Component({
   selector: 'saikou-animes',
   templateUrl: './animes.component.html',
@@ -28,11 +29,7 @@ export class AnimesComponent {
     pages: number[];
   };
 
-  constructor(
-    private aServ: AnimeService,
-    private router: Router,
-    private store: Store
-  ) {
+  constructor(private aServ: AnimeService, private store: Store) {
     this.isLoading = true;
     this.store
       .select(state => state.animes)
@@ -44,6 +41,7 @@ export class AnimesComponent {
         }
       });
     this.store.dispatch(new GetAnimes());
+    this.store.dispatch(new SetTitle('Saikou Animes'));
   }
 
   public getNextPage(nextPage: number) {
