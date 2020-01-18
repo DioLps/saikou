@@ -33,6 +33,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { EpisodeState } from './animes/episode/store/episode.state';
 import { FavoritesState } from './favorites/store/favorites.state';
 import { TitleState } from './store/app.state';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { TitleState } from './store/app.state';
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatInputModule,
-    MatListModule
+    MatListModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [AnimeService],
   bootstrap: [AppComponent]
