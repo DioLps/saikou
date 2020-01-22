@@ -55,7 +55,6 @@ export class AnimeService {
       const $el = $('.miau');
       const firstElement = $el.toArray().pop();
       const videos = $(firstElement).find('.video');
-      console.log(firstElement)
       const naco = $(firstElement)
         .find('.naco')
         .toArray()
