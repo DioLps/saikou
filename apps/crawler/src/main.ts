@@ -9,10 +9,8 @@ import { ExpressAdapter } from '@nestjs/platform-express';
 import { AppModule } from './app/app.module';
 import { Colors } from './utils';
 import { environment } from './environments/environment';
-import { NotFoundExceptionFilter } from './app/filters/http-exception.filter';
 
 import * as express from 'express';
-import { join } from 'path';
 
 const server = express();
 
@@ -23,10 +21,6 @@ async function bootstrap() {
     port = process.env.PORT;
   }
   app.use(setCors);
-
-  // Serve only the static files form the angularapp directory
-  app.use(express.static(join(__dirname, '..', 'saikou-animes')));
-  app.useGlobalFilters(new NotFoundExceptionFilter());
 
   await app.listen(port, '0.0.0.0', () => {
     console.log(Colors.FGBLUE, 'Listening at http://localhost:' + port);

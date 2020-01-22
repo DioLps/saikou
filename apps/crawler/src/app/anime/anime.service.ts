@@ -41,7 +41,7 @@ export class AnimeService {
   public getEpisodes(slug: string, page: number = 1) {
     // https://goyabu.com/anime/black-clover/page/2/
     return rp(
-      `${environment.base_path}/anime/${slug}/page/${page}`,
+      `${environment.base_path}/assistir/${slug}/page/${page}`,
       environment.requestOptions
     ).then(response => {
       if (!response) {
@@ -55,6 +55,7 @@ export class AnimeService {
       const $el = $('.miau');
       const firstElement = $el.toArray().pop();
       const videos = $(firstElement).find('.video');
+      console.log(firstElement)
       const naco = $(firstElement)
         .find('.naco')
         .toArray()
