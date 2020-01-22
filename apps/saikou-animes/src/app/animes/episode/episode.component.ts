@@ -27,7 +27,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.myStoreSub.forEach(sub => sub.unsubscribe());
+    this.unsub();
   }
 
   public getEpisode() {
@@ -47,7 +47,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   public goToEpisode(page) {
-    let key = page.url.replace('https://goyabu.com/video/', '');
+    let key = page.url.replace('https://goyabu.com/videos/', '');
     key = key.replace('/', '');
 
     this.store
@@ -63,5 +63,9 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   public goBack() {
     this.store.dispatch(new Navigate([`/animes`]));
+  }
+
+  private unsub() {
+    this.myStoreSub.forEach(sub => sub.unsubscribe());
   }
 }
