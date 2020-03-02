@@ -11,6 +11,10 @@
       margin: 16px;
       flex: 0 0 100%;
     }
+
+    @media only screen and (max-width: 768px) {
+      width: 1780px;
+    }
   }
   &__label {
     flex: 0 0 100%;
