@@ -23,7 +23,7 @@ export class VideoService {
       return {
         main: this.getMainVideo($('.page.p-video > script')),
         mainLabel: this.getMainLabel($('h1[itemprop="name"]')),
-        pageControl: this.getPageControl($('.aaa>a[rel]'))
+        pageControl: this.getPageControl($('.subitem>a[rel]'))
       };
     });
   }
