@@ -5,7 +5,6 @@ import { GetEpisode } from './store/episode.actions';
 import { Subscription } from 'rxjs';
 import { Navigate } from '@ngxs/router-plugin';
 import { SetTitle } from '../../store/app.actions';
-import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'saikou-episode',
@@ -39,7 +38,6 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   public getEpisode() {
     this.myStoreSub = this.store
       .select(state => state.episode)
-      .pipe(take(1))
       .subscribe(response => {
         if (response && response.episode) {
           this.episode = response.episode;
