@@ -39,6 +39,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   public getEpisode() {
     this.myStoreSub = this.store
       .select(state => state.episode)
+      .pipe(take(1))
       .subscribe(response => {
         if (response && response.episode) {
           this.episode = response.episode;
