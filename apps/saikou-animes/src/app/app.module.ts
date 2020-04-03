@@ -34,7 +34,7 @@ import { EpisodeState } from './animes/episode/store/episode.state';
 import { FavoritesState } from './favorites/store/favorites.state';
 import { TitleState } from './store/app.state';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { AddBaseUrlToCoverPipe } from './add-base-url-to-cover.pipe';
+import { AddBaseUrlToCoverPipe } from './shared/pipes/add-base-url-to-cover.pipe';
 
 @NgModule({
   declarations: [
