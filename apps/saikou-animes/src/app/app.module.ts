@@ -67,7 +67,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
+    })
   ],
   providers: [AnimeService],
   bootstrap: [AppComponent]
