@@ -31,12 +31,12 @@
   </div>
 </div>
 
-<div class="spinner">
+<div class="spinner"
+*ngIf="!episode">
   <mat-progress-spinner
     class="spinner__loader"
     color="primary"
     mode="indeterminate"
-    *ngIf="!episode"
   >
   </mat-progress-spinner>
 </div>
