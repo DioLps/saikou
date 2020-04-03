@@ -1,5 +1,5 @@
 .list-container {
-  min-height: 89.5vh;
+  min-height: calc(100% - 64px);
   &__search {
     display: flex;
     align-items: center;

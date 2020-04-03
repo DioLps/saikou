@@ -10,6 +10,7 @@
     @media only screen and (max-width: 768px) {
       margin: 16px;
       flex: 0 0 100%;
+      width: 100%;
     }
 
     @media only screen and (min-width: 2560px) {
@@ -35,4 +36,12 @@
       margin-top: 16px;
     }
   }
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 80vh;
 }
