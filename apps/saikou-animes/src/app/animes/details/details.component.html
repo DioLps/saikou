@@ -1,12 +1,26 @@
 <div class="details">
   <div class="details__buttons details__buttons--between">
-    <button mat-button class="details__button" (click)="goBack()" title="Voltar">
+    <button
+      mat-button
+      class="details__button"
+      (click)="goBack()"
+      title="Voltar"
+    >
       <mat-icon mat-mini-fab>keyboard_arrow_left</mat-icon>
       Voltar
     </button>
-    <button mat-button class="details__button" (click)="setFavorite()" title="Favoritar">
-      <mat-icon mat-mini-fab class="details__icon" [class.details__icon--selected]="isFavorite">
-        {{isFavorite?'favorite' : 'favorite_border' }}
+    <button
+      mat-button
+      class="details__button"
+      (click)="setFavorite()"
+      title="Favoritar"
+    >
+      <mat-icon
+        mat-mini-fab
+        class="details__icon"
+        [class.details__icon--selected]="isFavorite"
+      >
+        {{ isFavorite ? 'favorite' : 'favorite_border' }}
       </mat-icon>
     </button>
   </div>
@@ -14,55 +28,76 @@
   <div class="details__content" *ngIf="details">
     <h3 class="details__title" [innerText]="details.title"></h3>
     <div class="details__header">
-      <img class="details__banner" [src]="details.cover" [alt]="details.title">
+      <img
+        class="details__banner"
+        [src]="addBaseUrlToCover(details.cover)"
+        [alt]="details.title"
+      />
       <div class="details__about">
-        <div class="details__many-epi">
-          Vídeos: {{details.videos}}
-        </div>
-        <div class="details__type">
-          Tipo: {{details.type}}
-        </div>
-        <div class="details__genre">
-          Gênero: {{details.genre}}
-        </div>
-        <div class="details__status">
-          Status: {{details.status}}
-        </div>
+        <div class="details__many-epi">Vídeos: {{ details.videos }}</div>
+        <div class="details__type">Tipo: {{ details.type }}</div>
+        <div class="details__genre">Gênero: {{ details.genre }}</div>
+        <div class="details__status">Status: {{ details.status }}</div>
         <div class="details__views">
-          Número de visulizações: {{details.views}}
+          Número de visulizações: {{ details.views }}
         </div>
       </div>
     </div>
     <div class="details__extra-info" *ngIf="details.synopsis">
       <strong>Sinopse: </strong>
-      <p [innerText]="details.synopsis"> </p>
+      <p [innerText]="details.synopsis"></p>
     </div>
   </div>
   <div class="details__episodes" *ngIf="epiObject">
-    <mat-card class="details__episode episode" *ngFor="let epi of epiObject.episodes" (click)="goToVideo(epi)">
-      <div class="episode__header">
-        <img class="episode__banner" mat-card-image [src]="epi.image" [alt]="epi.title" />
-        <mat-icon class="episode__icon" mat-mini-fab>play_arrow</mat-icon>
-      </div>
-      <mat-card-content class="episode__content">
-        <span class="episode__title" [innerText]="epi.title"></span>
-        <span class="episode__has_hd" *ngIf="epi.has_hd">HD</span>
-      </mat-card-content>
+    <mat-card
+      class="details__episode episode"
+      *ngFor="let epi of epiObject.episodes"
+    >
+      <a class="episode__link" [routerLink]="['/animes/episode/' + epi.slug]">
+        <div class="episode__header">
+          <img
+            class="episode__banner"
+            mat-card-image
+            [src]="epi.image"
+            [alt]="epi.title"
+          />
+          <mat-icon class="episode__icon" mat-mini-fab>play_arrow</mat-icon>
+        </div>
+        <mat-card-content class="episode__content">
+          <span class="episode__title" [innerText]="epi.title"></span>
+          <span class="episode__has_hd" *ngIf="epi.has_hd">HD</span>
+        </mat-card-content>
+      </a>
     </mat-card>
   </div>
 
   <div class="details__buttons" *ngIf="epiObject && epiObject.episodes">
-    <button mat-button class="details__button" (click)="goToPage(epiObject.prevPage)" *ngIf="epiObject.prevPage"
-      title="Página anterior">
+    <button
+      mat-button
+      class="details__button"
+      (click)="goToPage(epiObject.prevPage)"
+      *ngIf="epiObject.prevPage"
+      title="Página anterior"
+    >
       <mat-icon mat-mini-fab>keyboard_arrow_left</mat-icon>
       Página anterior
     </button>
-    <button mat-button class="details__button" (click)="goToPage(epiObject.nextPage)" *ngIf="epiObject.nextPage"
-      title="Próxima página">
+    <button
+      mat-button
+      class="details__button"
+      (click)="goToPage(epiObject.nextPage)"
+      *ngIf="epiObject.nextPage"
+      title="Próxima página"
+    >
       Próxima página
       <mat-icon mat-mini-fab>keyboard_arrow_right</mat-icon>
     </button>
   </div>
-  <mat-progress-spinner class="details__loader" color="primary" mode="indeterminate" *ngIf="!details ">
+  <mat-progress-spinner
+    class="details__loader"
+    color="primary"
+    mode="indeterminate"
+    *ngIf="!details"
+  >
   </mat-progress-spinner>
 </div>

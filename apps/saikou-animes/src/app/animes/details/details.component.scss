@@ -85,17 +85,25 @@
   @media only screen and (max-width: 768px) {
     flex: 0 0 100%;
   }
+
   &__content {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
+
+  &__link {
+    text-decoration: none;
+    color: white;
+  }
+
   &__header {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
   &__icon {
     position: absolute;
     background-color: #673ab799;

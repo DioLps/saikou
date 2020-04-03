@@ -45,7 +45,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
         if (response) {
           this.details = null;
           this.details = response.animes.find(
-            (anime: AnimeData) => anime.hash === parseInt(this.slug)
+            (anime: AnimeData) => anime.hash === Number(this.slug)
           );
           if (this.details === undefined) {
             this.goBack();
@@ -57,6 +57,12 @@ export class DetailsComponent implements OnInit, OnDestroy {
         }
       });
     this.myStoreSub.push(mySubDetail);
+  }
+
+  public addBaseUrlToCover(cover: string): string {
+    return !cover.includes('https://goyabu.com/')
+      ? 'https://goyabu.com/' + cover
+      : cover;
   }
 
   private verifyFavorite() {
