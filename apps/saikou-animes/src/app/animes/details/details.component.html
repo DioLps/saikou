@@ -30,7 +30,7 @@
     <div class="details__header">
       <img
         class="details__banner"
-        [src]="addBaseUrlToCover(details.cover)"
+        [src]="details.cover | addBaseUrlToCover"
         [alt]="details.title"
       />
       <div class="details__about">
@@ -58,7 +58,7 @@
           <img
             class="episode__banner"
             mat-card-image
-            [src]="epi.image"
+            [src]="epi.image | addBaseUrlToCover"
             [alt]="epi.title"
           />
           <mat-icon class="episode__icon" mat-mini-fab>play_arrow</mat-icon>

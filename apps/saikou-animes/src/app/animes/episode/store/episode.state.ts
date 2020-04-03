@@ -3,6 +3,7 @@ import { State, Selector, Action, StateContext } from '@ngxs/store';
 import { EpisodeModel, EpisodeData } from './episode.model';
 import { EpisodeService } from './episode.service';
 import { GetEpisode } from './episode.actions';
+import { take } from 'rxjs/operators';
 
 export class EpisodeStateModel implements EpisodeModel {
   episode: EpisodeData;
@@ -26,8 +27,11 @@ export class EpisodeState {
     { patchState }: StateContext<EpisodeStateModel>,
     { payload }: GetEpisode
   ) {
-    this.episodeService.getAnimeEpisode(payload).subscribe(episode => {
-      patchState({ episode } as EpisodeModel);
-    });
+    this.episodeService
+      .getAnimeEpisode(payload)
+      .pipe(take(1))
+      .subscribe(episode => {
+        patchState({ episode } as EpisodeModel);
+      });
   }
 }

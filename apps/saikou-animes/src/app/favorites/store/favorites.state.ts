@@ -29,7 +29,9 @@ export class FavoritesState {
   @Action(GetAllFavoriteAnimes)
   getAllFavorites({ patchState }: StateContext<FavoritesStateModel>) {
     const favorites = this.favoritesService.getAll();
-    patchState({ favorites });
+    if (favorites) {
+      patchState({ favorites });
+    }
   }
 
   @Action(SetFavoriteAnime)

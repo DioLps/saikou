@@ -61,6 +61,7 @@ export class AnimesComponent {
   }
 
   public setPage(page: number) {
+    this.filteredList = [];
     // get pager object from service
     this.pager = this.aServ.getPager(this.response.animes.length, page);
 

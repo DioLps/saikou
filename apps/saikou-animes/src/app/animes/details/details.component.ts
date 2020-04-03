@@ -59,12 +59,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.myStoreSub.push(mySubDetail);
   }
 
-  public addBaseUrlToCover(cover: string): string {
-    return !cover.includes('https://goyabu.com/')
-      ? 'https://goyabu.com/' + cover
-      : cover;
-  }
-
   private verifyFavorite() {
     this.store.dispatch(new IsThisAFavoriteAnime({ hash: this.slug }));
     const mySubDetail = this.store
