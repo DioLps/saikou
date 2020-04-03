@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { GetEpisode } from './store/episode.actions';
 import { Subscription } from 'rxjs';
-import { AnimeData } from '../store/animes.model';
 import { Navigate } from '@ngxs/router-plugin';
 import { SetTitle } from '../../store/app.actions';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'saikou-episode',
@@ -14,25 +14,26 @@ import { SetTitle } from '../../store/app.actions';
 })
 export class EpisodeComponent implements OnInit, OnDestroy {
   public episode = null;
+  public myRouteSub: Subscription;
+
   constructor(private activatedRoute: ActivatedRoute, private store: Store) {
     this.getEpisode();
   }
 
-  public myStoreSub: Array<Subscription> = [];
-
-  ngOnInit() {
-    this.store.dispatch(
-      new GetEpisode(this.activatedRoute.snapshot.params.slug)
-    );
+  public ngOnInit(): void {
+    this.myRouteSub = this.activatedRoute.params.subscribe(params => {
+      this.store.dispatch(new GetEpisode(params.slug));
+    });
   }
 
-  ngOnDestroy() {
-    this.unsub();
+  public ngOnDestroy(): void {
+    this.myRouteSub.unsubscribe();
   }
 
   public getEpisode() {
-    const mySub = this.store
+    this.store
       .select(state => state.episode)
+      .pipe(take(1))
       .subscribe(response => {
         if (response && response.episode) {
           this.episode = response.episode;
@@ -43,29 +44,20 @@ export class EpisodeComponent implements OnInit, OnDestroy {
           this.episode = null;
         }
       });
-    this.myStoreSub.push(mySub);
   }
 
   public goToEpisode(page) {
-    let key = page.url.replace('https://goyabu.com/videos/', '');
-    key = key.replace('/', '');
+    this.store.dispatch([
+      new Navigate([`/animes/episode/${this.getKeyFromPage(page)}`])
+    ]);
+  }
 
-    this.store
-      .dispatch([new Navigate([`/animes`])])
-      .toPromise()
-      .then(() => {
-        this.store.dispatch([
-          new Navigate([`/animes/episode/${key}`]),
-          new GetEpisode(this.activatedRoute.snapshot.params.slug)
-        ]);
-      });
+  public getKeyFromPage(page: any) {
+    const key = page.url.replace('https://goyabu.com/videos/', '');
+    return key.replace('/', '');
   }
 
   public goBack() {
     this.store.dispatch(new Navigate([`/animes`]));
-  }
-
-  private unsub() {
-    this.myStoreSub.forEach(sub => sub.unsubscribe());
   }
 }
