@@ -1,6 +1,6 @@
 import { AnimesData, AnimeData } from './animes.model';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { GetAnimes, GetDetailAnime } from './animes.actions';
+import { GetAnimes, GetDetailAnime, SetAnimes } from './animes.actions';
 import { AnimeService } from './animes.service';
 import { take } from 'rxjs/operators';
 
@@ -29,6 +29,16 @@ export class AnimesState {
       .subscribe((animes: AnimesData) => {
         patchState(animes);
       });
+  }
+
+  @Action(SetAnimes)
+  setAnime(
+    { patchState }: StateContext<AnimesStateModel>,
+    payload: AnimesData
+  ) {
+    if (payload) {
+      patchState(payload);
+    }
   }
 
   @Action(GetDetailAnime)

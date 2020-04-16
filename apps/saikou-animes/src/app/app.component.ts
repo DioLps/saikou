@@ -7,7 +7,7 @@ import {
   distinctUntilChanged,
   tap
 } from 'rxjs/operators';
-import { GetDetailAnime } from './animes/store/animes.actions';
+import { GetDetailAnime, SetAnimes } from './animes/store/animes.actions';
 import { AnimeData } from './animes/store/animes.model';
 import { GetEpisodesDetails } from './animes/details/store/details.actions';
 import { Navigate } from '@ngxs/router-plugin';
@@ -72,6 +72,7 @@ export class AppComponent implements OnDestroy {
   public goToDetail(anime: AnimeData) {
     this.changeSearch();
     this.store.dispatch([
+      new SetAnimes({ animes: [] }),
       new GetDetailAnime(anime),
       new Navigate([`/animes/details/${anime.hash}`]),
       new GetEpisodesDetails({ slug: anime.slug, page: 1 })
