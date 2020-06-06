@@ -4,17 +4,16 @@
   justify-content: center;
   flex-wrap: wrap;
   &__video {
-    width: 720px;
-    margin: 32px 64px;
+    width: 70vw;
+    margin: 32px 0;
 
     @media only screen and (max-width: 768px) {
-      margin: 16px;
-      flex: 0 0 100%;
-      width: 100%;
+      margin: 16px 0;
+      width: calc(100vw - 32px);
     }
 
-    @media only screen and (min-width: 2560px) {
-      width: 1780px;
+    @media only screen and (max-width: 1440px) {
+      width: 75vw;
     }
   }
   &__label {
