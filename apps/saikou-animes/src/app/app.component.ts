@@ -1,4 +1,10 @@
-import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Subscription, Subject } from 'rxjs';
 import {
@@ -7,7 +13,11 @@ import {
   distinctUntilChanged,
   tap
 } from 'rxjs/operators';
-import { GetDetailAnime, SetAnimes } from './animes/store/animes.actions';
+import {
+  GetDetailAnime,
+  SetAnimes,
+  GetAnimes
+} from './animes/store/animes.actions';
 import { AnimeData } from './animes/store/animes.model';
 import { GetEpisodesDetails } from './animes/details/store/details.actions';
 import { Navigate } from '@ngxs/router-plugin';
@@ -18,7 +28,7 @@ import { MatDrawer } from '@angular/material';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnDestroy, OnInit {
   public animes = [];
   public searchResults = [];
   public isSearchHide = true;
@@ -35,13 +45,24 @@ export class AppComponent implements OnDestroy {
       });
   }
 
-  public search(event) {
+  public ngOnInit(): void {
+    this.store.dispatch(new GetAnimes());
+  }
+
+  public ngOnDestroy(): void {
+    this.searchTerm = '';
+    this.searchResults = [];
+    this.isLoading = false;
+    this.searchSubs.unsubscribe();
+  }
+
+  public search(event): void {
     this.searchResults = [];
     this.isLoading = true;
     this.searchAction.next(event);
   }
 
-  public changeSearch() {
+  public changeSearch(): void {
     this.isSearchHide = !this.isSearchHide;
     if (!this.isSearchHide) {
       this.searchSubs = this.searchAction
@@ -60,13 +81,6 @@ export class AppComponent implements OnDestroy {
       this.isLoading = false;
       this.searchSubs.unsubscribe();
     }
-  }
-
-  ngOnDestroy() {
-    this.searchTerm = '';
-    this.searchResults = [];
-    this.isLoading = false;
-    this.searchSubs.unsubscribe();
   }
 
   public goToDetail(anime: AnimeData) {
