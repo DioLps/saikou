@@ -7,3 +7,4 @@ git checkout master
 git merge release
 git push
 git checkout dev
+exit

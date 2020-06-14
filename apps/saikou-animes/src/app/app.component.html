@@ -4,20 +4,28 @@
       <button type="button" mat-icon-button (click)="drawer.toggle()">
         <mat-icon mat-mini-fab>menu</mat-icon>
       </button>
-      <a class="main-row__link" [routerLink]="['animes']">
-        Saikou Animes</a>
+      <a class="main-row__link" [routerLink]="['animes']"> Saikou Animes</a>
     </div>
     <div class="main-row__search-action" *ngIf="isSearchHide">
-      <button type="button" mat-icon-button (click)="changeSearch();">
+      <button type="button" mat-icon-button (click)="changeSearch()">
         <mat-icon mat-mini-fab>search</mat-icon>
       </button>
     </div>
     <div class="main-row__search-box search-box" *ngIf="!isSearchHide">
       <div class="search-box__container">
-        <input class="search-box__field" placeholder="Digite o nome de um anime" [(ngModel)]="searchTerm"
-          (keyup)="search($event)">
+        <input
+          class="search-box__field"
+          placeholder="Digite o nome de um anime"
+          [(ngModel)]="searchTerm"
+          (keyup)="search($event)"
+        />
       </div>
-      <button type="button" class="search-box__close" mat-icon-button (click)="changeSearch();">
+      <button
+        type="button"
+        class="search-box__close"
+        mat-icon-button
+        (click)="changeSearch()"
+      >
         <mat-icon mat-mini-fab>close</mat-icon>
       </button>
     </div>
@@ -27,11 +35,27 @@
 <mat-drawer-container class="list-container" autosize>
   <mat-drawer #drawer class="list-container__sidenav" mode="side">
     <mat-list class="list-container__list">
-      <mat-list-item class="list-container__item" title="Animes" (click)="menuAction('animes',drawer)">
+      <mat-list-item
+        class="list-container__item"
+        title="Animes"
+        (click)="menuAction('animes', drawer)"
+      >
         <mat-icon mat-list-icon>video_library</mat-icon>
         <h4 mat-line>Animes</h4>
       </mat-list-item>
-      <mat-list-item class="list-container__item" title="Favoritos" (click)="menuAction('favorites',drawer)">
+      <mat-list-item
+        class="list-container__item"
+        title="Categorias"
+        (click)="menuAction('categories', drawer)"
+      >
+        <mat-icon mat-list-icon>category</mat-icon>
+        <h4 mat-line>Categorias</h4>
+      </mat-list-item>
+      <mat-list-item
+        class="list-container__item"
+        title="Favoritos"
+        (click)="menuAction('favorites', drawer)"
+      >
         <mat-icon mat-list-icon>favorite</mat-icon>
         <h4 mat-line>Favoritos</h4>
       </mat-list-item>
@@ -41,20 +65,39 @@
   <div class="list-container__content" *ngIf="isSearchHide">
     <router-outlet></router-outlet>
   </div>
-  <div class="list-container__search list-container--margin" *ngIf="!isSearchHide">
+  <div
+    class="list-container__search list-container--margin"
+    *ngIf="!isSearchHide"
+  >
     <p *ngIf="searchResults && searchTerm && isLoading">
       Buscando: '{{ searchTerm }}'...
     </p>
     <div class="list-container__cards" *ngIf="searchResults">
-      <mat-card class="list-container__card card" *ngFor="let anime of searchResults" (click)="goToDetail(anime)">
-        <img class="card__banner" mat-card-image [src]="anime.cover" [alt]="anime.title" />
+      <mat-card
+        class="list-container__card card"
+        *ngFor="let anime of searchResults"
+        (click)="goToDetail(anime)"
+      >
+        <img
+          class="card__banner"
+          mat-card-image
+          [src]="anime.cover"
+          [alt]="anime.title"
+        />
         <mat-card-content class="card__content">
-          <h3 class="card__title" [innerText]="anime.title + ' - ' + anime.type"></h3>
+          <h3
+            class="card__title"
+            [innerText]="anime.title + ' - ' + anime.type"
+          ></h3>
         </mat-card-content>
       </mat-card>
     </div>
-    <mat-progress-spinner class="list-container__loader" color="primary" mode="indeterminate" *ngIf="isLoading">
+    <mat-progress-spinner
+      class="list-container__loader"
+      color="primary"
+      mode="indeterminate"
+      *ngIf="isLoading"
+    >
     </mat-progress-spinner>
   </div>
-
 </mat-drawer-container>
