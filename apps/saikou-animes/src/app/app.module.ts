@@ -35,7 +35,6 @@ import { FavoritesState } from './favorites/store/favorites.state';
 import { TitleState } from './store/app.state';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AddBaseUrlToCoverPipe } from './shared/pipes/add-base-url-to-cover.pipe';
-import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +44,6 @@ import { CategoriesComponent } from './categories/categories.component';
     EpisodeComponent,
     FavoritesComponent,
     AddBaseUrlToCoverPipe,
-    CategoriesComponent
   ],
   imports: [
     BrowserModule,
