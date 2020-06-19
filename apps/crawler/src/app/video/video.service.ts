@@ -54,8 +54,11 @@ export class VideoService {
       const fromKey = "emphasis += \"<source type='video/mp4' src='";
       const untilKey = `' />";\nemphasis += `;
       const untilKeyWithoutBreakline = `' />"; emphasis += `;
-      const from = lastElement.indexOf(fromKey) + fromKey.length;
-      const until = lastElement.indexOf(untilKey);
+      const fromKeyTypeFunc = `, file: `;
+      const untilKeyTypeFunc = `},],\n}],playbackRateControls`;
+      const untilKeyTypeFuncWithoutBreakline = `function($)`;
+      const from = this.getIndexFrom(lastElement, fromKey);
+      const until = this.getIndexUntil(lastElement, untilKey);
       let firstCall: string = lastElement.substring(from, until);
       if (firstCall.includes(untilKeyWithoutBreakline)) {
         firstCall = firstCall.substring(
@@ -63,10 +66,23 @@ export class VideoService {
           firstCall.indexOf(untilKeyWithoutBreakline)
         );
       }
+      if (firstCall.includes(untilKeyTypeFuncWithoutBreakline)) {
+        const fromTypeFunc = this.getIndexFrom(lastElement, fromKeyTypeFunc);
+        const untilTypeFunc = this.getIndexUntil(lastElement, untilKeyTypeFunc);
+        firstCall = lastElement.substring(fromTypeFunc, untilTypeFunc);
+      }
       return firstCall;
     } catch (error) {
       console.error(error);
       return null;
     }
+  }
+
+  private getIndexFrom(lastElement: string, fromkey: string): number {
+    return lastElement.indexOf(fromkey) + fromkey.length;
+  }
+
+  private getIndexUntil(lastElement: string, untilKey: string): number {
+    return lastElement.indexOf(untilKey);
   }
 }
