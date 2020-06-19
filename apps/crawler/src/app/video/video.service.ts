@@ -54,8 +54,8 @@ export class VideoService {
       const fromKey = "emphasis += \"<source type='video/mp4' src='";
       const untilKey = `' />";\nemphasis += `;
       const untilKeyWithoutBreakline = `' />"; emphasis += `;
-      const fromKeyTypeFunc = `, file: `;
-      const untilKeyTypeFunc = `},],\n}],playbackRateControls`;
+      const fromKeyTypeFunc = `, file: "`;
+      const untilKeyTypeFunc = `"},],\n}],playbackRateControls`;
       const untilKeyTypeFuncWithoutBreakline = `function($)`;
       const from = this.getIndexFrom(lastElement, fromKey);
       const until = this.getIndexUntil(lastElement, untilKey);
@@ -70,6 +70,7 @@ export class VideoService {
         const fromTypeFunc = this.getIndexFrom(lastElement, fromKeyTypeFunc);
         const untilTypeFunc = this.getIndexUntil(lastElement, untilKeyTypeFunc);
         firstCall = lastElement.substring(fromTypeFunc, untilTypeFunc);
+        firstCall = firstCall.replace('"', '');
       }
       return firstCall;
     } catch (error) {
