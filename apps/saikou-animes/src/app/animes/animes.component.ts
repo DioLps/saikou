@@ -35,7 +35,6 @@ export class AnimesComponent {
       .select(state => state.animes)
       .subscribe(anime => {
         if (anime) {
-          console.log(anime)
           this.response = anime;
           this.setPage(this.selectedPage);
           this.isLoading = false;
