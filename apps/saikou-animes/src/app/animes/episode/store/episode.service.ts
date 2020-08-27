@@ -10,6 +10,6 @@ export class EpisodeService {
   constructor(private httpClient: HttpClient) {}
 
   public getAnimeEpisode(slug: number) {
-    return this.httpClient.get(this.endpoint + `/${slug}`);
+    return this.httpClient.get(`${this.endpoint}?slug=${slug}`);
   }
 }

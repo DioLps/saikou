@@ -6,7 +6,7 @@ import { environment } from 'apps/saikou-animes/src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AnimeService {
-  private endpoint = environment.api_path + 'anime';
+  private endpoint = environment.api_path + 'animes';
   constructor(private httpClient: HttpClient) {}
 
   public getAnimes() {
@@ -24,7 +24,7 @@ export class AnimeService {
   }
 
   public getDetailsAnime(hash: number) {
-    return this.httpClient.get(`${this.endpoint}/detail/${hash}`);
+    return this.httpClient.get(`${this.endpoint}/detail?hash=${hash}`);
   }
 
   public getPager(

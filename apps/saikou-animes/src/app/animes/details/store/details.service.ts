@@ -7,12 +7,12 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root'
 })
 export class DetailsService {
-  private endpoint = environment.api_path + 'anime';
+  private endpoint = environment.api_path + 'animes';
   constructor(private httpClient: HttpClient) {}
 
   public getAnimeEpisodes(params: DetailsPayload) {
     return this.httpClient.get(
-      this.endpoint + `/episodes/${params.slug}/${params.page}`
+      this.endpoint + `/episodes?slug=${params.slug}&page=${params.page}`
     );
   }
 }
